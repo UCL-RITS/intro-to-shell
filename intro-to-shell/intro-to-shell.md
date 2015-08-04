@@ -380,10 +380,10 @@ Other file inspection tools
 
 | Command | Action |
 |:------- |:---------------------------------------------------------------------- |
-| head | - visualise the first 10 lines of a file |
-| tail | - visualise the last 10 lines of a file |
-| cat  | - concatenate files provided as input and dump the result to *stdout* |
-| sdiff | - visualise and compare two files side-by-side |
+| head | visualise the first 10 lines of a file |
+| tail | visualise the last 10 lines of a file |
+| cat  | concatenate files provided as input and dump the result to *stdout* |
+| sdiff | visualise and compare two files side-by-side |
 
 (Use "man &lt;command&gt;" to see more information)
 
@@ -827,11 +827,12 @@ File permissions
 
 **drwxr-xr-x** has four fields:
 
-|:-----|:----------------------------------------------|
-| d    | - the file is a directory                     |
-| rwx  | - the user has read, write and execute access |
-| r-x  | - the group has read and execute access       |
-| r-x  | - others have read and execute access         |
+|  |  |
+|:-----|:--------------------------------------------|
+| d    | The file is a directory                     |
+| rwx  | The user has read, write and execute access |
+| r-x  | The group has read and execute access       |
+| r-x  | Others have read and execute access         |
 
 
 
@@ -944,11 +945,12 @@ echo $message
 echo ${message}!
 ```
 
+|   |   |
 |:---------|:----------------------------------------------------------|
-| #!       | tells the shell to use bash as the interpreter (/bin/bash)|
-| #        | followed by a blank character is a comment line           |
-| message  | variable to which the string 'Hello World' is assigned    |
-| echo     | prints to screen the contents of the variable "$message"  |
+| #!       | Tells the shell to use bash as the interpreter (/bin/bash)|
+| #        | Followed by a blank character is a comment line           |
+| message  | Variable to which the string 'Hello World' is assigned    |
+| echo     | Prints to screen the contents of the variable "$message"  |
 
 Command line arguments
 ----------------------
@@ -1038,7 +1040,7 @@ Use the **ps** command
  67762  75804  75804  67762 pts/1     75804 R+   181641   0:00      \_ ps -xjf
 ```
 
-
+|   |   |
 |:--------|:-----------------------------------------------------------|
 | PID     | - the process ID                                           |
 | TTY     | - the virtual teletype terminal this proces is attached to |
