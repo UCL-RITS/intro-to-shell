@@ -14,17 +14,11 @@ Course content
 --------------
 
 * Navigating the filesystem
-
 * File manipulation
-
 * Wildcards, redirection and piping
-
 * Variables and loops
-
 * File properties and permissions
-
 * Scripting and workflows
-
 * And more...
 
 Prerequisites
