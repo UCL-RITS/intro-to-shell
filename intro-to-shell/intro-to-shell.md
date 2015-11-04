@@ -128,6 +128,7 @@ Hidden files and directories
 
 * Files starting with "." are hidden
 * We have changed the default behaviour of **ls** with a switch
+* Always leave a space to separate arguments and switches
 * **.** - Present working directory (in this case ~)
 * **..** - Directory above (in this case /home)
 
@@ -186,18 +187,26 @@ Relative path
 Absolute and relative paths
 ---------------------------
 
-* There are many ways of writing the path to a directory:
+There are many ways of writing the path to a directory.
 
-```ls /home/user/shell-training/``` <- Absolute path
+Absolute path:
 
-```ls shell-training/``` <- Relative path
+```ls /home/user/shell-training/```
 
-```ls ~/shell-training/``` <- This relative path works from anywhere
+Relative path:
 
-```cd shell-training/data/```
-```ls ..``` <- The path to the parent directory
+```ls shell-training/```
 
-* Always leave a space to separate arguments and switches
+This relative path works from anywhere:
+
+```ls ~/shell-training/```
+
+And going up the tree:
+
+```
+cd shell-training/data/
+ls ..
+```
 
 Exercise
 --------
@@ -268,7 +277,6 @@ Nano: A simple file editor
 
 ![](../assets/nano.png)
 
-* **nano** - simple file editor
 * If the file exists nano will open it, otherwise it will open a blank page
 
 Nano
@@ -399,7 +407,7 @@ File inspection revisited
 -------------------------
 ```
 [user@host ~]$ cd shell-training/IOM-animals/
-[user@host IOM-animals]$head -5 mammals.txt
+[user@host IOM-animals]$ head -5 mammals.txt
 common pipistrelle, pipistrellus pipistrellus
 whiskered bat, myotis mystacinus
 natterer's bat, myotis nattereri
@@ -584,6 +592,11 @@ Redirection
 
     + Standard Input (stdin): default source of a program's input - it is generally the command line.
 
+Output redirection and piping
+-----------------------------
+
+![](../assets/process1.png)
+
 Redirecting output to a file
 ----------------------------
 
@@ -613,11 +626,6 @@ Redirecting output
 
 * **|** "pipe" stdout to stdin of another command
 * ```ls -R``` recursively list all subdirectories
-
-Output redirection and piping
------------------------------
-
-![](../assets/process1.png)
 
 Output redirection and piping
 -----------------------------
