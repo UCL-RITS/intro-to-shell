@@ -68,13 +68,15 @@ Command Prompt
 [user@host ~]$
 ```
 
-* Has the form **[&lt;username&gt;@&lt;host name&gt; &lt;present directory&gt;]$**
+* On Aristotle the command prompt has the form **[&lt;username&gt;@&lt;host name&gt; &lt;present directory&gt;]$**
 
-* **&lt;user name&gt;** is the Unix user name (UCL user ID).
+* **&lt;user name&gt;** is the Unix user name (your UCL user ID).
 
 * **&lt;host name&gt;** is the name of the computer that you are accessing.
 
 * **&lt;present directory&gt;** is the directory that the user is currently in.
+
+* Other systems you log into may have a different form of prompt.
 
 Command Prompt
 --------------
@@ -83,9 +85,51 @@ Command Prompt
 
 	+ User types a command and presses enter
 
-	+ The shell *reads* this command, and *executes* it
+	+ The shell *reads* this command, and *evaluates* it
 
 	+ The shell then *prints* any output to the screen and returns the command prompt to the user
+
+Some files to play with
+-----------------------
+```
+[user@host ~]git clone https://github.com/tcouch/shell-training.git
+```
+
+* Copy this from the slides and right click in the terminal to paste it in.
+
+What's in here?
+---------------
+```
+[user@host ~]$ ls
+shell-training
+```
+
+* **ls** - lists the contents of the current directory
+
+What's over there?
+------------------
+```
+[user@host ~]$ ls shell-training
+data    IOM-animals   some-maths.txt   wildcards
+```
+
+* Give ls the name of a directoty as an *argument* to list the contents of that directory
+
+Hidden files and directories
+----------------------------
+
+```
+[user@host ~]$ ls -a
+.	  			.cshrc		shell-training
+..				.config		.ssh
+.bash_history	.emacs			
+[user@host ~]$ 
+```
+
+* Files starting with "." are hidden
+* We have changed the default behaviour of **ls** with a switch
+* **.** - Present working directory (in this case ~)
+* **..** - Directory above (in this case /home)
 
 Where am I?
 -----------
@@ -98,54 +142,18 @@ Where am I?
 
 * **pwd** (print working directory) - returns the full path to your current working directory
 * **~** 'tilde' is the current user's home directory
-
-Unix Directory Basics
----------------------
-
-```
-/home/user: directory
-
-/home: directory
-
-/: directory
-```
-
 * **/** - the *root* directory
+* Note: Windows uses backslashes '\' in paths, everything else uses forward slashes
 
 Filesystem structure
 --------------------
 
 ![](../assets/directorystructure.png)
 
-
-What's in here?
----------------
-
-```
-[user@host ~]$ ls
-file1.txt	file2.pdf	file3.dat
-```
-
-* **ls** - lists the contents of the current directory
-
-Hidden files and directories
-----------------------------
-
-```
-[user@host ~]$ ls -a
-.	  			.cshrc			file1.txt
-..				.configure		file2.pdf
-.bash_history	.emacs			file3.dat
-[user@host ~]$ 
-```
-
-* Files starting with "." are hidden
-
-* **.** - Present working directory (in this case ~)
-* **..** - Directory above (in this case /home)
-
 Directory Navigation
 --------------------
+
+**Do not type ls in /home on Aristotle!**
 
 ```
 [user@host ~]$ pwd
@@ -175,22 +183,21 @@ Relative path
 
 ../home/alice
 
-What's over there?
-------------------
+Absolute and relative paths
+---------------------------
 
-* Give ls an *argument* to list the contents of another directory
+* There are many ways of writing the path to a directory:
 
-```
-[user@host ~]ls /home/user/work
-...
-[user@host ~]ls work
-...
-[user@host ~]ls ~/work
-...
-[user@host ~]ls ../user/work
-```
+```ls /home/user/shell-training/``` <- Absolute path
 
-* Always leave a space to separate arguments
+```ls shell-training/``` <- Relative path
+
+```ls ~/shell-training/``` <- This relative path works from anywhere
+
+```cd shell-training/data/```
+```ls ..``` <- The path to the parent directory
+
+* Always leave a space to separate arguments and switches
 
 Exercise
 --------
@@ -206,6 +213,7 @@ With reference to the directory structure shown above:
 ```
 2015-01 	2015-02 	2015-03
 ```
+
 When exploring the filesystem on Aristotle:
 		
 1. What does typing ```cd``` on its own do? Try typing it from several different locations.
@@ -221,7 +229,7 @@ Directory creation
 ```
 [user@host ~]$ mkdir a_directory
 [user@host ~]$ ls
-a_directory
+a_directory shell-training
 [user@host ~]$ mkdir a_directory/inside/the_other
 mkdir: cannot create directory `a_directory/inside/the_other': No such file or directory
 ```
@@ -245,26 +253,14 @@ Command switches
 ----------------
 
 * The default behaviour of a command can be changed by adding switches, also known as flags or options
-* These are arguments beginning with a dash e.g. ```ls -a``` or ```mkdir -p```
+* These begin with a dash e.g. ```ls -a``` or ```mkdir -p```
 * Type *man* and then the name of a command for a list of switches and their behaviours, e.g.:
 	+ ```man ls```
 	+ ```man mkdir```
 * Type 'q' to quit man pages
 
-Touching a file
----------------
-
-```
-[user@host ~]$ touch a_file
-[user@host ~]$ ls
-a_directory	a_file
-```
-
-* **touch** - create or update the date of a file
-* This is **not** usually how files are created
-
-Editing files
--------------
+Nano: A simple file editor
+--------------------------
 
 ```
 [user@host ~]$ nano a_file
@@ -273,24 +269,32 @@ Editing files
 ![](../assets/nano.png)
 
 * **nano** - simple file editor
-
+* If the file exists nano will open it, otherwise it will open a blank page
 
 Nano
 ----
 
 ![](../assets/nano2.png)
 
-* **nano** - simple file editor
 * Commands are along the botton of editor screen
 * ^ - shorthand for control key
 * Ctrl-O to save, Ctrl-X to exit
 
-Editors
--------
+Other editors
+-------------
 
 There are many other (better but more complex) text file editors on the system such as **vim**, **emacs** and **nedit**.
 
 Use the one you feel most comfortable with.
+
+Naming files and directories
+----------------------------
+
+* You can use spaces in file and directory names, but this is a bad idea as you will have to use quotes whenever you refer to that file.
+* Uppercase and lowercase characters are different: FILENAME does not equal filename
+* Avoid special characters such as: $:/\,[]{}()!;"'*?<>|
+* Filename extensions such as '.txt' or '.pdf' are a convention, not a requirement
+
 
 Copying files
 -------------
@@ -301,7 +305,7 @@ Copying files
 a_directory	a_file	copy_of_a_file
 ```
 
-* **cp** copy a file (or a directory tree)
+* **cp** copy a file or directory
 
 Moving/Renaming files and directories
 -------------------------------------
@@ -310,9 +314,7 @@ Moving/Renaming files and directories
 [user@host ~]$ mv a_file control.in
 [user@host ~]$ ls
 a_directory control.in	copy_of_a_file
-
 [user@host ~]$ mv control.in a_directory
-
 [user@host ~]$ ls a_directory
 control.in inside
 ```
@@ -325,16 +327,14 @@ Deleting files and directories
 
 ```
 [user@host ~]$ rm a_directory/control.in
-
 [user@host ~]$ rm a_directory
 rm: cannot remove `a_directory/': Is a directory
-
 [user@host ~]$ rm -r a_directory
 [user@host ~]$ 
 ```
 
 * **rm** - delete a file
-* **rm -r** - delete a directory and all its contents
+* **rm -r** - delete a directory and all of its content
 * **rm operations are irreversible!!!**
 * The -i argument is highly recommended
 
@@ -359,14 +359,14 @@ Exercise:
 Tab completion
 --------------
 
-* Go to ```/shared/ucl/apps/examples/openmp_pi_dir```
-* What happens if you type ```cd /sh``` and then press the *tab* key?
+* Go to your home directory
+* What happens if you type ```cd sh``` and then press the *tab* key?
 
 Inspecting files
 ----------------
 ```
-[user@host ~]$ cd /shared/ucl/apps/examples/openmp_pi_dir
-[user@host examples]$ less openmp_pi.f90
+[user@host ~]$ cd shell-training/IOM-animals/
+[user@host IOM-animals]$ less insects.txt
 ```
 
 * **less** - visualise a text file:
@@ -382,7 +382,7 @@ Other file inspection tools
 |:------- |:---------------------------------------------------------------------- |
 | head | visualise the first 10 lines of a file |
 | tail | visualise the last 10 lines of a file |
-| cat  | concatenate files provided as input and dump the result to *stdout* |
+| cat  | print file contents to the terminal screen |
 | sdiff | visualise and compare two files side-by-side |
 
 (Use "man &lt;command&gt;" to see more information)
@@ -392,17 +392,94 @@ History repeating
 * Type ```history``` for a numbered list of your previous commands.
 * Type ```!555``` where *555* is the number of a command you want to execute again.
 
+Pipes
+=====
 
-Wildcards, Redirection and Piping
-=================================
+File inspection revisited
+-------------------------
+```
+[user@host ~]$ cd shell-training/IOM-animals/
+[user@host IOM-animals]$head -5 mammals.txt
+common pipistrelle, pipistrellus pipistrellus
+whiskered bat, myotis mystacinus
+natterer's bat, myotis nattereri
+daubenton's bat, myotis daubentonii
+leisler's bat, nyctalus leisleri
+```
 
-Some files to play with
------------------------
+* Use an option ```-n``` with head and tail to print n lines from the start or end of a file
+
+The middle?
+-----------
+What about printing a number of lines from the middle of a file? There's no ```mid``` command!
+
+An inefficient solution:
+
+1. Use ```>``` to redirect what would normally be printed to the screen to a file instead
+2. Save the output from head to a new file
+3. Use tail to select some lines from the new file
+
+The middle?
+-----------
+
 ```
-[user@host ~]git clone https://github.com/tcouch/shell-training.git
-...
-[user@host ~]cd shell-training
+[user@host IOM-animals]$ head -15 mammals.txt > temp.txt
+[user@host IOM-animals]$ tail -5 temp.txt
+european hedgehog, erinaceus europaeus
+pygmy shrew, sorex minutus
+wood mouse, apodemus sylvaticus
+house mouse, mus domesticus
+brown rat, rattus norvegicus
 ```
+
+* What if you wanted to do this for 1000 files?
+* What if your work flow involves several commands for each file?
+
+A better solution
+-----------------
+We can use a pipe to redirect the output from one command and make it the input for another command:
+```
+[user@host IOM-animals]$ head -15 mammals.txt | tail -5
+european hedgehog, erinaceus europaeus
+pygmy shrew, sorex minutus
+wood mouse, apodemus sylvaticus
+house mouse, mus domesticus
+brown rat, rattus norvegicus
+```
+
+Another link in the chain
+-------------------------
+* ```wc -w``` counts the number of words it is given
+
+```
+[user@host IOM-animals]$ head -15 mammals.txt | tail -5 | wc -w
+20
+```
+
+Piping
+------
+
+You can chain any number of programs together to achieve your goal:
+
+![](../assets/process6.png)
+
+* Any number of commands can be connected in this way (memory permitting)
+* As long as it takes text input and produces text output
+* Even scripts or programs you write yourself
+
+Exercise
+--------
+Two new commands:
+
+* The ```sort``` command will sort lines alphabetically
+* You can use the ```cut``` command to split lines of text based on a given character
+	* e.g. ```cut -d ',' -f 2``` will split lines around the comma and give you the second part
+	
+1. Combine cat, cut, and sort to print out the Latin names from insects.txt in alphabetical order
+2. Save the output to a new file
+
+Wildcards
+=========
 
 Wildcards
 ---------
@@ -448,24 +525,67 @@ Wildcards
 ---------
 
 ```
-[user@host wildcards]$ ls [fx]*
-food.txt	xyz.txt
+[user@host wildcards]$ cat [fx]*
+Food is any substance consumed to provide nutritional
+support for the body. It is usually of plant or animal
+origin, and contains essential nutrients, such as fats,
+...
+A Cartesian coordinate system is a coordinate system that
+specifies each point uniquely in a plane by a pair of
+numerical coordinates, which are the signed distances from
+...
 ```
 
 * Use square brackets to match any one of the characters indicated.
 
-Output redirection and piping
------------------------------
+Paint it black
+--------------
 
-* Two very important concepts:
+```
+[user@host IOM-animals]$ grep -hw red *.txt | sed 's/red/black/' | cut -d ',' -f 1
+black-throated diver
+black-breasted merganser
+black-legged partridge
+black grouse
+black-veined darter
+large black damselfly
+black admiral
+black-necked wallaby
+```
 
-    + Standard Output (stdout) - default destination of a program's output. It is generally the terminal screen.
+* **grep** prints lines containing a string.
+* **sed** stream editor allows you to edit text.
+* **cut** select and print parts of lines.
 
-    + Standard Input (stdin) - default source of a program's input. It is generally the command line.
+Exercise
+--------
 
+List all the animals on the Isle of Mann alphabetically and find the 50th item in that list
+
+Exercise
+--------
+```shell-training/data/``` contains 300 data files, each of which *should* contain 100 values.
+One of these files is missing some data though...
+
+* Use a series of commands connected by pipes to identify the file with missing data
+* **hint** ```wc -w``` will tell you the number of values in a file, ```sort -n``` will sort numerically
+
+Redirection
+===========
+
+Redirection
+-----------
+
+* There are three streams of communication between a program and its environment:
+
+    + Standard Output (stdout): an output stream where a program writes its data - the default destination is generally the terminal screen.
+	
+	+ Standard Error (sterr): another output stream containing error messages - also printed to the terminal screen by default.
+
+    + Standard Input (stdin): default source of a program's input - it is generally the command line.
 
 Redirecting output to a file
---------------------------
+----------------------------
 
 ```
 [user@host ~]$ echo hello > hello.txt
@@ -534,7 +654,7 @@ You can also redirect standard input to a command, using ```<```
 to send the contents of a file in place of command line input.
 
 ```
-[user@host shell-training]$ bc -l < some-maths
+[user@host shell-training]$ bc < some-maths
 3.14285714285714285714
 9.99
 16.66666666666666666666
@@ -543,62 +663,7 @@ to send the contents of a file in place of command line input.
 
 * **bc** allows calculations with floating point numbers.
 
-Output redirection and piping
------------------------------
 
-You can chain any number of programs together to achieve your goal:
-
-![](../assets/process6.png)
-
-This allows you to build up fairly complex workflows within one command-line.
-
-Counting the classes
---------------------
-
-I want to list all the animals on the Isle of Mann alphabetically and find the 50th item in that list:
-
-```
-[user@host ~]$ cd shell-training/IOM-animals
-[user@host IOM-animals]$ cat *.txt | sort | head -50 | tail -1 > animal50.txt
-[user@host IOM-animals]$ cat animal50.txt
-	coot, fulica atra
-```
-
-* **cat** concatenate these files
-* **sort** sort a list
-* **head -50** show the first 50 lines only
-
-Paint it black
---------------
-
-```
-[user@host IOM-animals]$ grep -hw red *.txt | sed 's/red/black/g' | cut -d ',' -f 1
-black-throated diver
-black-breasted merganser
-black-legged partridge
-black grouse
-black-veined darter
-black admiral
-black-necked wallaby
-```
-
-* **grep** prints lines containing a string.
-* **sed** stream editor allows you to edit text.
-* **cut** select and print parts of lines.
-
-Exercise
---------
-```shell-training/data/``` contains 300 data files, each of which *should* contain 100 values.
-One of these files is missing some data though...
-
-* Use a series of commands connected by pipes to identify the file with missing data
-* **hint** ```wc -w``` will tell you the number of values in a file, ```sort -n``` will sort numerically
-
-Exercise
---------
-
-* In IOM-animals, list all the animals with the word 'common' in their name alphabetically.
-* **hint** ```grep -h``` will remove the file names from the output.
 
 Variables and Loops
 ===================
@@ -630,15 +695,15 @@ Quoting variables
 -----------------
 ```
 [user@host ~]$ fruit=orange
-[user@host ~]$ echo "I love eating $fruits."
-I love eating .
+[user@host ~]$ echo "I like eating $fruits."
+I like eating .
 ```
 
 Quoting variables
 -----------------
 ```
-[user@host ~]$ echo "I love eating ${fruit}s."
-I love eating oranges.
+[user@host ~]$ echo "I like eating ${fruit}s."
+I like eating oranges.
 ```
 
 * In some cases you will need to surround a variable name with braces.
@@ -690,9 +755,9 @@ What is the output of this command?
 
 Note the structure: \<path1\>:\<path2\>:\<path3\>  
 
-PATH is an environmental variable which Bash uses to search for commands typed on the command line without a full path. 
+PATH is an environment variable which Bash uses to search for commands typed on the command line without a full path. 
 
-**Exercise:** Use the command **env** to discover more.
+Use the command **env** to discover more environment variables.
 
 The for loop
 ------------
@@ -721,9 +786,6 @@ Looping through files
 [user@host IOM-animals]$ mv *.backup backup
 ```
 	
-Updated process diagram
------------------------
-
 The for loop using an iterator
 ------------------------------
 
@@ -776,10 +838,9 @@ File properties
 ```
 [user@host ~]$ ls -l
 total 8
-drwxr-xr-x 2 user rcops 4096 2009-12-08 07:31 a_directory
--rw-r--r-- 1 user rcops    0 2009-12-08 07:31 a_file
-drwxr-xr-x 2 user rcops 4096 2009-12-08 06:50 Scratch
-
+drwxr-xr-x 3 user cceas0  256 Nov  3 16:19 a_directory
+-rw-r--r-- 1 user cceas0   16 Nov  4 12:25 a_file
+drwxr-xr-x 6 user cceas0  256 Nov  3 12:30 shell-training
 ```
 
 * **ls -l** - list file properties (details)
@@ -884,7 +945,6 @@ Exercise:
 * Add write permission for users from your group for the full directory tree with one single **chmod** command (look in the man pages for more information).
 
 * What happens if you can read but not execute a directory?	
-	
 
 Shell Scripting
 ===============
@@ -892,46 +952,73 @@ Shell Scripting
 Shell scripting
 ---------------
 
+If you put all of the commands you want to run in a text file:
+
+```
+# This is script will print three lines.
+echo "Hello you"
+echo "Hello me"
+echo "Hello World!"
+```
+
+You can start a new instance of the shell to run those commands:
+
+```
+[user@host ~]$ bash hello.sh
+Hello you
+Hello me
+Hello World!
+```
+
+* \# - a comment (ignored by /bin/bash)
+
+
+Making it executable
+--------------------
+
+In fact we can make this script executable so that you can run it like a command:
+
 ```
 #!/bin/bash
-# This is a very simple hello world script.
-echo "Hello, world!"
+# This is script will print three lines.
+echo "Hello you"
+echo "Hello me"
+echo "Hello World!"
 ```
 
-* \#! - tells the shell that it should use /bin/bash as the interpreter
-* \# - a comment (ignored by /bin/bash)
-* echo - a command that prints arguments to stdout
+* \#!/bin/bash - tells the shell which program it should use to interpret the commands: in this case bash
 
-Running a script
-----------------
-Method 1
-```
-[user@host ~]$ bash hello_world.sh
-```
+Making it executable
+--------------------
 
-* **bash** is the name of the shell you are using right now
-* This starts a new instance of bash to run the commands in the script
-
-Running a script
-----------------
-Method 2: making it executable
+We now have to change the permissions for the script to make it executable:
 
 ```
-[user@host ~]$ chmod u+x hello_world.sh
-[user@host ~]$ ls -l hello-world.sh
--rwxr--r-- 1 user ccaas0 30 Mar 31 17:10 hello_world.sh
-[user@host ~]$ ./hello_world.sh
-hello world!
+[user@host ~]$ chmod u+x hello.sh
+[user@host ~]$ ls -l hello.sh
+-rwxr--r-- 1 cceatco cceas0 94 Nov  4 14:24 hello.sh
 ```
 
-* Why ```./hello_world.sh``` and not just ```hello_world.sh```?
+Making it executable
+--------------------
+
+And now we can run it:
+
+```
+[user@host ~]$ ./hello.sh
+Hello you
+Hello me
+Hello World!
+```
+
+* Why ```./hello.sh``` and not just ```hello.sh```?
 
 Exercise:
 --------
 
 * Create a "Hello world"-like script using a text editor and execute it.
 
-* Redirect the output from your script to a file using &gt;.
+* Redirect the output from your script to a file or another program.
 
 Variables in shell scripts
 --------------------------
@@ -1003,6 +1090,12 @@ Exercise
 
 * Write a script which will create as many numbered directories as you want when you run it.
 
+Exercise
+--------
+
+* Write your own **mid** command which will print a selection of lines from the middle of a file depending on the arguments you pass to it.
+
+
 Process control
 ===============
 
@@ -1029,39 +1122,42 @@ execute the command "fg"
 Which processes are running?
 ----------------------------
 
-Use the **ps** command
+Use the **jobs** command
 
 ```
-[user@host ~]$ ps xjf
-  PPID    PID   PGID    SID TTY       TPGID STAT   UID   TIME COMMAND
- 67744  67753  67744  67744 ?            -1 S    181641   0:00 sshd: user@pts
- 67753  67762  67762  67762 pts/1     75804 Ss   181641   0:00  \_ -bash
- 67762  75782  75782  67762 pts/1     75804 S    181641   0:00      \_ sleep 30
- 67762  75804  75804  67762 pts/1     75804 R+   181641   0:00      \_ ps -xjf
+[user@host ~]$ sleep 60 &
+[1] 24991
+[user@host ~]$ jobs
+[1]+  Running                 sleep 60 &
 ```
 
-|   |   |
-|:--------|:-----------------------------------------------------------|
-| PID     | - the process ID                                           |
-| TTY     | - the virtual teletype terminal this proces is attached to |
-| TIME    | - the time the process has been running                    |
-| CMD     | - the command that was called                              |
+Or **ps** for more information
+
+```
+[user@host ~]$ ps
+   PID TTY          TIME CMD
+ 24467 pts/6    00:00:00 bash
+ 24991 pts/6    00:00:00 sleep
+ 24996 pts/6    00:00:00 ps
+```
+
 
 Killing processes
 -----------------
 
-Use the **kill** command with the process ID
+Use the **kill** command with the PID:
 
 ```
-[user@host ~]$ kill 75782
+[user@host ~]$ kill 24991
+[1]+  Terminated              sleep 60
 ```
 
-Or force termination with
+Or use the job number:
 
 ```
-[user@host ~]$ kill -9 75782
+[user@host ~]$ kill %1
+[1]+  Terminated              sleep 60
 ```
-
 
 More information
 ----------------
@@ -1351,3 +1447,4 @@ work.tgz         100%  340     0.3KB/s   00:00
 ```
 
 * . means copy to this directory
+
