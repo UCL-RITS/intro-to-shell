@@ -483,7 +483,7 @@ Two new commands:
 * You can use the ```cut``` command to split lines of text based on a given character
 	* e.g. ```cut -d ',' -f 2``` will split lines around the comma and give you the second part
 	
-1. Combine cat, cut, and sort to print out the Latin names from insects.txt in alphabetical order
+1. Combine cat, cut, and sort to print out the Latin names from birds.txt in alphabetical order
 2. Save the output to a new file
 
 Wildcards
