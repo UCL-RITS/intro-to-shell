@@ -209,11 +209,11 @@ Solution
 [user@host ~]$ ls -Rl a_directory/
 a_directory/:
 total 0
-drwxr-xr-x 3 cceatco cceas0 256 Nov  6 10:09 inside
+drwxr-xr-x 3 cceaxxx cceas0 256 Nov  6 10:09 inside
 
 a_directory/inside:
 total 0
-drwxr-xr-x 2 cceatco cceas0 256 Nov  6 10:09 the_other
+drwxr-xr-x 2 cceaxxx cceas0 256 Nov  6 10:09 the_other
 
 a_directory/inside/the_other:
 total 0
@@ -221,11 +221,11 @@ total 0
 [user@host ~]$ ls -Rl a_directory/
 a_directory/:
 total 0
-drwxrwxr-x 3 cceatco cceas0 256 Nov  6 10:13 inside
+drwxrwxr-x 3 cceaxxx cceas0 256 Nov  6 10:13 inside
 
 a_directory/inside:
 total 0
-drwxrwxr-x 2 cceatco cceas0 256 Nov  6 10:13 the_other
+drwxrwxr-x 2 cceaxxx cceas0 256 Nov  6 10:13 the_other
 
 a_directory/inside/the_other:
 total 0
