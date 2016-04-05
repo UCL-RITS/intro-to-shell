@@ -2,6 +2,17 @@
 title: Quick reference
 ---
 
+General tips
+------------
+
+* Uppercase and lowercase letters are different:
+	* A file called thesis.txt is different from Thesis.txt and tHeSiS.tXt
+* Highlight text in the terminal and right click to paste text
+	* Right clicking also works for pasting from the Windows clipboard
+* Press the up arrow on your keyboard to cycle through previous commands
+* Tab will autocomplete file/directory names when typing commands
+* Be careful with spaces when writing commands - spaces should separate each option or argument
+
 ##Basic navigation
 
 |   |   |
