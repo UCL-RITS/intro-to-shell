@@ -36,30 +36,30 @@ Connecting to a computer: over the Internet
 
 Communication *encrypted!*
 
-Access to Aristotle
--------------------
+Access to Legion
+----------------
 
 * To access one of the login nodes (remotely) from a Unix machine:
 ``` 
-ssh username@aristotle.rc.ucl.ac.uk
+ssh <username>@legion.rc.ucl.ac.uk
 ```
 
 * Log on using UCL username/password
 
 * On Windows (e.g. Desktop@UCL) you can use PuTTY.
 
-Access to Aristotle
--------------------
+Access to Legion
+----------------
 
 ![](../assets/puttylocation.png)
 
-Access to Aristotle
--------------------
+Access to Legion
+----------------
 
-![](../assets/puttyconfig-aristotle.png)
+![](../assets/puttyconfig.png)
 
-Section 1: Navigating the filesystem
-====================================
+Navigating the filesystem
+=========================
 
 Command Prompt
 --------------
@@ -101,7 +101,7 @@ What's in here?
 ---------------
 ```
 [user@host ~]$ ls
-shell-training
+Scratch  shell-training
 ```
 
 * **ls** - lists the contents of the current directory
@@ -110,7 +110,7 @@ What's over there?
 ------------------
 ```
 [user@host ~]$ ls shell-training
-data    IOM-animals   some-maths.txt   wildcards
+animals  data  docs  scripts
 ```
 
 * Give ls the name of a directoty as an *argument* to list the contents of that directory
@@ -120,14 +120,15 @@ Hidden files and directories
 
 ```
 [user@host ~]$ ls -a
-.	  	.cshrc		shell-training
-..		.config		.ssh
-.bash_history	.emacs			
+.              .bash_logout  Scratch
+..             .bashrc       shell-training
+.bash_history  .emacs        .ssh
 ```
 
 * Files starting with "." are hidden
 * We have changed the default behaviour of **ls** with a switch, also known as a flag or option
 * Always leave a space to separate commands, switches and arguments
+* Type ```man ls``` for a list of options you can use with ls (q to quit)
 
 Hidden files and directories
 ----------------------------
@@ -140,7 +141,7 @@ Hidden files and directories
 ```
 
 * **.** - Present working directory (in this case ~)
-* **..** - Directory above (in this case /home)
+* **..** - Parent directory to the current directory (in this case /home)
 
 Where am I?
 -----------
@@ -217,7 +218,7 @@ cd /bin/../tmp/../home/username/shell-training
 Tab completion
 --------------
 
-* Go to your home directory
+* Go to your home directory: ```cd ~```
 * What happens if you type ```cd sh``` and then press the *tab* key?
 
 Exercises
@@ -225,20 +226,26 @@ Exercises
 
 The shell-training folder has the following structure:
 
+```
 ~/shell-training
+|--animals
+|--data
 |--docs
-|--exercises
 |--scripts
-|--survey-data
+```
 
-1. What is the absolute path to the exercises directory? Use the absolute path to change into this directory
-2. From there, list the contents of the docs directory using a relative path
+1. What is the absolute path to the docs directory? Use the absolute path to change into this directory
+2. From there, list the contents of the animals directory using a relative path
+
+Exercises
+---------
+
 3. What does typing ```cd``` on its own do? Try typing it from several different locations.
 4. What does typing ```cd -``` do? Try typing it from several different locations.
 
 
-Section 2: Creating Files and Directories
-=========================================
+Creating Files and Directories
+==============================
 
 Directory creation
 ------------------
@@ -246,7 +253,7 @@ Directory creation
 ```
 [user@host ~]$ mkdir a_directory
 [user@host ~]$ ls
-a_directory shell-training
+a_directory  Scratch  shell-training
 ```
 
 * Type *mkdir* followed by the name of the directory you want to create.
@@ -257,7 +264,7 @@ Directory creation
 ```
 [user@host ~]$ mkdir b_directory c_directory
 [user@host ~]$ ls
-a_directory   b_directory   c_directory   shell-training
+a_directory  b_directory  c_directory  Scratch  shell-training
 ```
 
 * You can create two directories at the same time: just separate the names with a space.
@@ -268,12 +275,10 @@ Directory creation
 ```
 [user@host ~]$ mkdir shell-training/a_directory
 [user@host ~]$ ls shell-training
-a_directory   docs   exercises   scripts   survey-data
+a_directory  animals  data  docs  scripts
 ```
 
-* You can put the path to an existing directory before your new directory name to create a directory in that 
-
-location.
+* You can put the path to an existing directory before your new directory name to create a directory in that location.
 
 Nano: A simple file editor
 --------------------------
@@ -293,23 +298,19 @@ Nano
 
 * Commands are along the botton of editor screen
 * ^ - shorthand for control key
-* Ctrl-O to save, Ctrl-X to exit
+* Type Ctrl-O then Enter to save, Ctrl-X to exit
 
 Other editors
 -------------
 
-There are many other (better but more complex) text file editors on the system such as **vim**, **emacs** and 
-
-**nedit**.
+There are many other (better but more complex) text file editors on the system such as **vim**, **emacs** and **nedit**.
 
 Use the one you feel most comfortable with.
 
 Naming files and directories
 ----------------------------
 
-* You can use spaces in file and directory names, but this is generally a bad idea as you will have to use 
-
-quotes whenever you refer to that file.
+* You can use spaces in file and directory names, but this is generally a bad idea as you will have to use quotes whenever you refer to that file.
 * Uppercase and lowercase characters are different: FILENAME does not equal filename
 * Avoid special characters such as: $:/\,[]{}()!;"'*?<>|
 * Filename extensions such as '.txt' or '.pdf' are a convention, not a requirement
@@ -338,8 +339,8 @@ Running a script
 ```
 [user@host ~]$ source a_script.sh
 Creating new directory...
-a_directory   a_script.sh   c_directory     shell-training
-a_file        b_directory   new_directory
+a_directory   a_script.sh   c_directory     Scratch
+a_file        b_directory   new_directory   shell-training
 Finished
 ```
 
@@ -356,21 +357,19 @@ Running a script
 Running a script
 ----------------
 
-* The new directory is created in the current working directory, not the directory where the script file is 
-
-located.
+* The new directory is created in the current working directory, not the directory where the script file is located.
 
 ```
-[user@host shell-training]$ bash ../a_script.sh
+[user@host shell-training]$ source ../a_script.sh
 Creating new directory...
-a_directory   docs   exercises   new_directory   scripts   survey-data
+a_directory   animals   data   docs   new_directory   scripts
 Finished
 ```
 
-Exercises
----------
+Exercise
+--------
 
-1. Write a script to
+Write a script that will do the following steps:
    a. Create a new directory called cake inside your home directory
    b. Use an absolute path to create a directory inside cake called "Cheesecake"
    c. Change into the Cheesecake directory
@@ -384,24 +383,42 @@ Exercises
 |--Battenberg
 ```
 
-2. Read the man page for mkdir to find out what the -p option does. Use it to create the following set of 
+Exercise
+--------
 
-directories with a single command:
+Read the man page for mkdir to find out what the -p option does. Use it to create the following set of directories with a single command:
 ```
 ~/bread
 |--focaccia
 |--naan
 ```
 
-Section 3: Wildcards
-====================
+Wildcards
+=========
 
 Wildcards
 ---------
 
 ```
-[user@host shell-training]$ cd section3
-[user@host section3]$ wc *.txt
+[user@host shell-training]$ cd docs
+[user@host shell-training]$ ls
+123.dat    abc.txt  cake.txt        def.txt   r2d2.bot        xyz.txt
+abcde.txt  ab.txt   cheesecake.txt  food.txt  some-maths.txt
+[user@host docs]$ wc abc.txt def.txt xyz.txt
+  10   52  168 abc.txt
+   7   61  394 def.txt
+  11   99  589 xyz.txt
+  28  212 1151 total
+```
+
+* ```wc``` counts lines, words and bytes for each file
+* We can give wc the names of the files we want to inspect as arguments
+
+Wildcards
+---------
+
+```
+[user@host docs]$ wc *.txt
   13  119  683 abcde.txt
   10   52  168 abc.txt
    8   83  454 ab.txt
@@ -409,19 +426,19 @@ Wildcards
   11  105  656 cheesecake.txt
    7   61  394 def.txt
   13   85  561 food.txt
-  23   91  751 mammals.txt
+   6   12   56 some-maths.txt
   11   99  589 xyz.txt
- 122  901 5588 total
+ 105  822 4893 total
 ```
 
-* `*` is a wildcard that matches zero or more characters.
-* ```wc``` counts lines, words and bytes for each file
+* `*` is a wildcard that matches zero or more characters
+* Bash automatically expands *.txt into a list of filenames matching that pattern
 
 Wildcards
 ---------
 
 ```
-[user@host section3]$ ls a*.txt
+[user@host docs]$ ls a*.txt
 abcde.txt  abc.txt  ab.txt
 ```
 
@@ -431,7 +448,7 @@ Wildcards
 ---------
 
 ```
-[user@host section3]$ ls ???.txt
+[user@host docs]$ ls ???.txt
 abc.txt	def.txt	xyz.txt
 ```
 
@@ -441,19 +458,19 @@ Wildcards
 ---------
 
 ```
-[user@host section3]$ ls [fx]*
-food.txt xyz.txt
+[user@host docs]$ ls [fx]*
+food.txt  xyz.txt
 ```
 
 * Square brackets will match any one of the characters listed inside them.
 
-Section 4: Manipulating Files
-=============================
+Manipulating Files
+==================
 
 Inspecting files
 ----------------
 ```
-[user@host section3]$ less mammals.txt
+[user@host animals]$ less birds.txt
 ```
 
 * **less** - visualise a text file:
@@ -465,7 +482,7 @@ Inspecting files
 Searching files
 ---------------
 ```
-[user@host section3]$ grep bat mammals.txt
+[user@host animals]$ grep bat mammals.txt
 whiskered bat, myotis mystacinus
 natterer's bat, myotis nattereri
 daubenton's bat, myotis daubentonii
@@ -490,9 +507,8 @@ Other file inspection tools
 
 Exercise
 --------
-Use grep to search through all of the files in the animal directory to find animals with the word red in their 
+Use grep to search through all of the files in the animal directory to find animals with the word red in their name. Read the man page to find out how to make grep only select the word red, and not just any word containing r-e-d.
 
-name.
 
 Copying files
 -------------
@@ -500,7 +516,8 @@ Copying files
 ```
 [user@host ~]$ cp a_file copy_of_a_file
 [user@host ~]$ ls
-a_directory  a_file  copy_of_a_file
+a_directory  a_script.sh  bread  cakes.sh     copy_of_a_file  Scratch
+a_file       b_directory  cake   c_directory  new_directory   shell-training
 ```
 
 * **cp** copy a file or directory
@@ -511,7 +528,8 @@ Moving/Renaming files and directories
 ```
 [user@host ~]$ mv a_file control.in
 [user@host ~]$ ls
-a_directory control.in	copy_of_a_file
+a_directory  b_directory  cake      c_directory  copy_of_a_file  Scratch
+a_script.sh  bread        cakes.sh  control.in   new_directory   shell-training
 [user@host ~]$ mv control.in a_directory
 [user@host ~]$ ls a_directory
 control.in
@@ -546,32 +564,21 @@ Aliases
 * You can create an alias for common commands to make you life easier
 * Type **alias** on its own to see what aliases are already set up
 
-Exercises:
----------
-The section2 directory contains several files ending in ".txt". Write a script to create a backup folder and 
-
-copy all the files ending in .txt to it.
+Exercise
+--------
+The docs directory contains several files ending in ".txt". Write a backup script that will create a backups folder and copy each of these files there.
 
 * Run the script
-* Delete one of the original text files and use nano to edit another
+* Delete two of the original text files and use nano to edit another
 * Use sdiff to compare the file you've changed with the backed up version
+* Read the cp man page to find out how to restore the deleted files from the backup folder without overwriting the changes you have made to the other files
 
-Write a second script that will restore everything from the backup directory
-
-* Read the cp man page to find out how to stop your restore script overwriting files that still exist in the 
-
-current directory with their backed up versions
-
-What happens if you try to copy a directory? Read the man pages to find out how to do this.
-
-Section 5: Redirection
-======================
+Redirection
+===========
 
 Redirecting output to a file
 ----------------------------
-Rather than having the output of a command printed to the screen, we can send it to be written to a file 
-
-instead.
+Rather than having the output of a command printed to the screen, we can send it to be written to a file instead.
 
 ```
 [user@host ~]$ echo hello > hello.txt
@@ -587,8 +594,8 @@ hello again
 File inspection revisited
 -------------------------
 ```
-[user@host ~]$ cd shell-training/
-[user@host shell-training]$head -n 5 mammals.txt
+[user@host ~]$ cd shell-training/animals
+[user@host animals]$ head -n 5 mammals.txt
 common pipistrelle, pipistrellus pipistrellus
 whiskered bat, myotis mystacinus
 natterer's bat, myotis nattereri
@@ -603,6 +610,7 @@ The middle?
 What about printing a number of lines from the middle of a file? There's no ```mid``` command!
 
 An inefficient solution:
+
 * Use ```>``` to redirect what would normally be printed to the screen to a file instead
 * Save the output from head to a new file
 * Use tail to select some lines from the new file
@@ -620,9 +628,7 @@ house mouse, mus domesticus
 brown rat, rattus norvegicus
 ```
 
-What if you wanted to do this for 1000 files? What if your work flow involves several intermediate steps? That's 
-
-a lot of temporary files!
+What if you wanted to do this for 1000 files? What if your work flow involves several intermediate steps? That's a lot of temporary files!
 
 A better solution
 -----------------
@@ -635,23 +641,6 @@ wood mouse, apodemus sylvaticus
 house mouse, mus domesticus
 brown rat, rattus norvegicus
 ```
-
-Output redirection and piping
------------------------------
-
-![](../assets/process1.png)
-
-Output redirection and piping
------------------------------
-
-![](../assets/process2.png)
-
-Output redirection and piping
------------------------------
-
-ls -l
-
-![](../assets/process3.png)
 
 Another link in the chain
 -------------------------
@@ -670,8 +659,8 @@ brown rat, rattus norvegicus
 * As long as each command takes text input and produces text output
 * Even scripts or programs you write yourself
 
-Output redirection and piping
------------------------------
+Another link in the chain
+-------------------------
 
 You can chain any number of programs together to achieve your goal:
 
@@ -682,8 +671,7 @@ This allows you to build up fairly complex workflows within one command-line.
 Exercise
 --------
 
-1. Use the wget command to download Alice's Adventures in Wonderland
-   - https://www.gutenberg.org/files/11/11.txt
+1. Use the wget command to download Alice's Adventures in Wonderland: https://www.gutenberg.org/files/11/11.txt
 
 2. Use less to read the file, search for specific words, and step through the results
 
@@ -698,27 +686,40 @@ Exercise
 More about redirection
 ----------------------
 
-* There are three streams of communication between a program and its environment:
+There are three streams of communication between a program and its environment:
 
-    + Standard Output (stdout): an output stream where a program writes its data - the default destination is 
+* Standard Output (stdout): an output stream where a program writes its data - the default destination is generally the terminal screen.
+* Standard Error (sterr): another output stream containing error messages - also printed to the terminal screen by default.
+* Standard Input (stdin): default source of a program's input - it is generally the command line.
 
-generally the terminal screen.
-	
-    + Standard Error (sterr): another output stream containing error messages - also printed to the terminal 
 
-screen by default.
+Output redirection and piping
+-----------------------------
 
-    + Standard Input (stdin): default source of a program's input - it is generally the command line.
+![](../assets/process1.png)
+
+Output redirection and piping
+-----------------------------
+
+![](../assets/process2.png)
+
 
 
 Redirecting StdErr
 ------------------
 
 ```
-[user@host wildcards]$ wc *.txt not_a_file > txt_list 2> txt_list_err
+[user@host docs]$ wc *.txt not_a_file > txt_list 2> txt_list_err
 ```
 
 * ```2>``` redirects any error messages created by a command
+
+Output redirection and piping
+-----------------------------
+
+ls -l
+
+![](../assets/process3.png)
 
 Output redirection and piping
 -----------------------------
@@ -734,7 +735,7 @@ You can also redirect standard input to a command, using ```<```
 to send the contents of a file in place of command line input.
 
 ```
-[user@host shell-training]$ bc < some-maths
+[user@host docs]$ bc < some-maths.txt
 3.14285714285714285714
 9.99
 16.66666666666666666666
@@ -744,8 +745,8 @@ to send the contents of a file in place of command line input.
 * **bc** allows calculations with floating point numbers.
 
 
-Section 6: Variables and Loops
-==============================
+Variables and Loops
+===================
 
 A simple variable
 -----------------
@@ -834,9 +835,7 @@ What is the output of this command?
 
 Note the structure: \<path1\>:\<path2\>:\<path3\>  
 
-PATH is an environment variable which Bash uses to search for commands typed on the command line without a full 
-
-path. 
+PATH is an environment variable which Bash uses to search for commands typed on the command line without a full path. 
 
 Use the command **env** to discover more environment variables.
 
@@ -877,7 +876,7 @@ iteration5
 Exercise
 --------
 
-* In the wildcards directory, create a variable called *files* listing all of the text files.
+* In the docs directory, create a variable called *files* listing all of the text files.
 * Loop through this list and print out the first line from each file.
 
 Exercise
@@ -894,10 +893,12 @@ File properties
 
 ```
 [user@host ~]$ ls -l
-total 8
-drwxr-xr-x 2 user rcops 4096 2009-12-08 07:31 a_directory
--rw-r--r-- 1 user rcops    0 2009-12-08 07:31 a_file
-drwxr-xr-x 2 user rcops 4096 2009-12-08 06:50 Scratch
+total 368
+-rw-r--r-- 1 course1 ucaac2 167546 Jan 25  2014 11.txt
+-rw-r--r-- 1 course1 ucaac2     72 Jun  6 12:34 a_script.sh
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:41 cake
+...
 ```
 
 * **ls -l** - list file properties (details)
@@ -906,20 +907,17 @@ File properties
 ---------------
 
 ```
-drwxr-xr-x 2 user rcops 4096 2009-12-08 07:31 a_directory
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
 
         drwxr-xr-x      - File type and permissions
-        2		- Number of links to the file
-        user         	- User name of file owner
-        rcops           - Group to which the file belongs 
+        4               - Number of links to the file
+        course1         - User name of file owner
+        ucaac2          - Group to which the file belongs 
         4096            - size of file in bytes
-        2009-12-08      - last change data
-        07:31           - last change time
-        a_directory     - file name
+        Jun 6           - last change date
+        12:43           - last change time
+        bread           - file name
 ```
-
-
-* **ls -l** - list file properties (details)
 
 File permissions
 ----------------
@@ -967,8 +965,8 @@ File permissions
 
 ```
 [user@host ~]$ ls -l 
-drwxr-xr-x 2 user rcops 4096 2009-12-08 07:31 a_directory
-[user@host ~]$ chmod go-rx a_directory
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
+[user@host ~]$ chmod go-rx bread
 [user@host ~]$ ls -l 
 drwx------ 2 user rcops 4096 2009-12-08 07:31 a_directory
 ```
@@ -992,8 +990,6 @@ chmod [ugoa][+/-][rwx] file
 
 If you don't specify u,g,o or a, default is **ALL** (so chmod +x makes file executable for everyone).
 
-* **chmod** - change the permissions of a file
-
 What groups am I in?
 --------------------
 
@@ -1005,34 +1001,23 @@ ucaac2 legon020
 Exercise:
 ---------
 * Find a partner who is in the same group as you. Use the **groups** command to check.
-* In your home directory, create a new directory and give members of your group write access to it.
+* In your home directory, create a new directory and give members of your group write access to it, but take away read access.
 * Tell your partner the absolute path to the directory you've given them write access to.
 * Share files by copying them to each other's shared directories.
 
 Exercise
 --------
 
-The data folder contains 200 files. Each file is named according
-to a type of measurement (A or B), and a location (1-100)
-e.g. A_21, B_56 etc.
-
-The scripts folder contains a python script which takes the names
-of an A and a B file as arguments
-e.g. scripts/calculate_score.py data/A_1 data/B_1
-This will calculate a score based on the data in the two files and
-print it to standard output along with the name of the files used
+The data folder contains 200 files. Each file is named according to a type of measurement (A or B), and a location (1-100) e.g. A_21, B_56 etc. The scripts folder contains a python script which takes the names of an A and a B file as arguments e.g. scripts/calculate_score.py data/A_1 data/B_1
+This will calculate a score based on the data in the two files and print it to standard output along with the name of the files used.
 
 1. Make calculate_score.py executable
 
-2. Use a for loop to run through the data files corresponding
-   to each location and generate a score
+2. Use a for loop to run through the data files corresponding to each location and generate a score
 
 3. Modify the for loop to save the scores to a file
 
-4. Use the sort command to find the location with the highest
-   score
-
-
+4. Use the sort command to find the location with the highest score
 
 Shell Scripting
 ===============
@@ -1040,9 +1025,7 @@ Shell Scripting
 Shell scripting
 ---------------
 
-So far we've been using **source** to run our scripts, but it's also possible to make them executable - just 
-
-like commands.
+So far we've been using **source** to run our scripts, but it's also possible to make them executable - just like commands.
 
 Step 1: The Interpreter Directive
 ---------------------------------
@@ -1053,7 +1036,9 @@ Step 1: The Interpreter Directive
 echo "Hello, world!"
 ```
 
-* \#! - tells the shell that it should use /bin/bash as the interpreter
+* \#! - is used to indicate which program should be used to interpret the script
+  + In this case it's bash, it could also be a language like python, perl, ruby etc.
+  + This must be the first line in the script
 * \# - a comment (ignored by /bin/bash)
 
 
@@ -1082,7 +1067,7 @@ hello world!
 
 Changing the PATH
 -----------------
-If you want to be able to make your script executable from anywhere, you need to change your PATH
+If you want to be able to make your script work like a command, you need the directory it is in to be in your PATH
 
 ```
 [user@host ~]$ mkdir ~/scripts
@@ -1131,15 +1116,13 @@ And together they make greenhouse
 Exercise
 --------
 
-You can now control the number of times a for loop iterates by including a number as an argument when you call 
-
-it. Write a script which will create as many numbered directories as you want when you run it.
+You can now control the number of times a for loop iterates by including a number as an argument when you call it. 
+Write a script which will create as many numbered directories as you want when you run it.
 
 Exercise
 --------
 
-1. Create a bash script called hi which will use the
-   USER environment variable to say hello to you
+1. Create a bash script called hi which will use the USER environment variable to say hello to you
 
 2. Make this script executable
 
@@ -1158,31 +1141,31 @@ Variables are temporary
 
 * If you close PuTTY and log back in, you'll find your changes to PATH and any aliases you created have gone.
 * You'll need to set them all up again if you want them to work.
-* But if you put them in a login script, they'll be setup every time you log in.
+* If you put them in a login script, they'll be setup every time you login.
 
 Those dot files
 ---------------
 
-Remember those hidden files in your home directory? At least two of them are actually pretty useful.
+Remember those hidden files in your home directory? Some of them are actually pretty useful.
 
 * **.bash_profile** is a script that runs every time you log in to the system
 * **.bashrc** is a script that runs every time you start a new interactive shell
 * It's quite common for .bash_profile to include a command to run .bashrc automatically
 
-Both of these are already set up for you on Legion, but you can edit them as you like.
+Both of these are already set up for you on Legion, but you can improve them as you like.
 
 Exercise
 --------
 
-1. Edit your .bash_profile script in your home directory and include some commands to be run when you log in.
+1. Edit your .bash_profile script in your home directory and include some commands to be run when you log in. For example:
   * alias
   * cal
   * echo "Welcome back $USER"
-  * PATH=$PATH:$HOME/scripts && export PATH
+  * PATH=\$PATH:\$HOME/scripts && export PATH
 
 2. Close PuTTY and log back in.
 
-3. Now edit .bashrc and start a new instance of bash
+3. Now edit .bashrc to report $SHLVL when you start a new instance of bash
 
 
 Archiving and transferring files
@@ -1205,24 +1188,6 @@ work/workfile
     + **z** - compress
     + **v** - verbose
     + **f** - in the following file
-
-Extracting files from a compressed archive
-------------------------------------------
-
-```
-[user@host ~]$ tar -xzvf work.tgz 
-work/
-work/program/
-work/calculations/
-work/calculations/control.in
-work/workfile
-```
-
-* **tar -z*x*vf** - extracts and uncompresses directory trees and files 
-    + **x** - extract archive 
-    + **z** - uncompress
-    + **v** - verbose
-    + **f** - from the following file
 
 Accessing another system
 ------------------------
@@ -1249,6 +1214,24 @@ work.tgz         100%  213     0.2KB/s   00:00
 
 * remember to put the colon at the end!
 
+Extracting files from a compressed archive
+------------------------------------------
+
+```
+[user@host ~]$ tar -xzvf work.tgz 
+work/
+work/program/
+work/calculations/
+work/calculations/control.in
+work/workfile
+```
+
+* **tar -z*x*vf** - extracts and uncompresses directory trees and files 
+    + **x** - extract archive 
+    + **z** - uncompress
+    + **v** - verbose
+    + **f** - from the following file
+
 Transferring files across a network
 -----------------------------------
 
@@ -1274,10 +1257,6 @@ Exercise
 3. Extract the archive file on Aristotle
 
 4. Use scp to copy a file from Aristotle to your home directory
-
-
-
-
 
 Process control
 ===============
@@ -1323,7 +1302,6 @@ Or **ps** for more information
  24991 pts/6    00:00:00 sleep
  24996 pts/6    00:00:00 ps
 ```
-
 
 Killing processes
 -----------------
@@ -1451,17 +1429,13 @@ Logging back in
 Other screen commands
 ---------------------
 
-* **screen -d** - forces detach of a screen that's running (so you can screen -r it).  Handy if your SSH 
-
-connection drops.
+* **screen -d** - forces detach of a screen that's running (so you can screen -r it).  Handy if your SSH connection drops.
 
 * **screen -ax** - forces attach to a screen that's attached to from somewhere else.
 
 * You can configure screen in lots of useful ways, including changing the keyboard shortcuts.
 
-* For more see man pages, or online documentation: [(http://www.gnu.org/software/screen/)]
-
-(http://www.gnu.org/software/screen/)
+* For more see man pages, or online documentation: [(http://www.gnu.org/software/screen/)](http://www.gnu.org/software/screen/)
 
 
 More useful shell commands
@@ -1535,8 +1509,8 @@ Soft links
 * Shortcut, e.g.
 
 ```
-[cuser@host ~]$ ln -s ~/some_project/2012/part531 ~/current_project
-[cuser@host ~]$ ls -l ~ 
+[user@host ~]$ ln -s ~/some_project/2012/part531 ~/current_project
+[user@host ~]$ ls -l ~ 
 lrwxr-xr-x  1 user  staff  11 10 Oct 17:56
                current_project -> /home/user/some_project_2012/part531
 ```
@@ -1544,9 +1518,6 @@ lrwxr-xr-x  1 user  staff  11 10 Oct 17:56
 * Can use relative or absolute paths!
 
 * Create using absolute paths to make sure they go where you want
-
-
-
 
 Generating scripts with scripts
 -------------------------------
@@ -1570,6 +1541,3 @@ the child_script.sh
 
 * write a parent_script.sh that creates and executes 
 10 different child_script.sh that print out their individual number
-
-
-
