@@ -2,7 +2,8 @@
 title: Quick reference
 ---
 
-##General tips
+General tips
+------------
 
 * Uppercase and lowercase letters are different:
 	* A file called thesis.txt is different from Thesis.txt and tHeSiS.tXt
