@@ -5,111 +5,145 @@ title: Exercise solutions
 Exercise
 --------
 
-* Create the following directory tree in your home directory (```~```):
+The shell-training folder has the following structure:
 
-```
-    work
-    work/input_data/
-    work/results/
-    work/program/
-```
+~/shell-training
+|--animals
+|--data
+|--docs
+|--scripts
 
-* Create the file "input.txt" with a text editor and put some text in it.
-
-* Move the file to work/input_data and rename it in the same command to control01.txt
-
-* Create this directory tree in one line only: work/experiment/results/report
-
-* Delete the work directory and all of its contents with one single command.
+1. What is the absolute path to the docs directory? Use the absolute path to change into this directory
+2. From there, list the contents of the animals directory using a relative path
 
 Solution
 --------
 
-```
-[user@host ~]$ mkdir work work/input_data work/results work/program
-[user@host ~]$ nano input.txt
-[user@host ~]$ mv input.txt work/input_data/control01.txt
-[user@host ~]$ mkdir -p work/experiment/results/report
-[user@host ~]$ ls -R work
-work:
-experiment  input_data  program  results
-
-work/experiment:
-results
-
-work/experiment/results:
-report
-
-work/experiment/results/report:
-
-work/input_data:
-control01.txt
-
-work/program:
-
-work/results:
-[user@host ~]$ rm -r work
-```
+1. ```cd /home/<username>/shell-training/docs```
+2. ```ls ../animals```
 
 Exercise
 --------
-Two new commands:
 
-* The ```sort``` command will sort lines alphabetically
-* You can use the ```cut``` command to split lines of text based on a given character
-	* e.g. ```cut -d ',' -f 2``` will split lines around the comma and give you the second part
-	
-1. Combine cat, cut, and sort to print out the Latin names from birds.txt in alphabetical order
-2. Save the output to a new file
+Write a script that will do the following steps: a. Create a new directory called cake inside your home directory b. Use an absolute path to create a directory inside cake called "Cheesecake" c. Change into the Cheesecake directory d. Use a relative path to create another directory inside cake called "Battenberg" e. Return to the home directory and list the contents of cake
+
+The final set of directories should look like this:
+```
+~/cake 
+|--Cheesecake
+|--Battenberg
+```
 
 Solution
 --------
 
+The script:
 ```
-[user@host IOM-animals]$ cat birds.txt | sort | cut -d ',' -f 2
-```
-
-```
-[user@host IOM-animals]$ cat birds.txt | sort | cut -d ',' -f 2 > sorted-birds.txt
+mkdir ~/cake
+mkdir /home/<username>/cake/Cheesecake
+cd /home/<username>/cake/Cheesecake
+mkdir ../Battenberg
+cd ~
+ls cake
 ```
 
 Exercise
 --------
 
-List all the animals on the Isle of Mann alphabetically and find the 50th item in that list
+Read the man page for mkdir to find out what the -p option does. Use it to create the following set of directories with a single command:
+```
+~/bread
+|--focaccia
+|--naan 
+```
+
+Solution
+--------
+
+The -p option will make parent directories as needed. Use two arguments to make the two sub directories, and the -p option creates the bread directory automatically.
+
+```
+mkdir -p ~/bread/focaccia ~/bread/naan
+```
+
+Exercise
+--------
+
+Use grep to search through all of the files in the animal directory to find animals with the word red in their name. Read the man page to find out how to make grep only select the word red, and not just any word containing r-e-d.
+
+Solution
+--------
+
+The man page for grep says the -w option will select only those lines containing matches that form whole words.
+
+```
+grep -w red *.txt
+```
+
+Exercise
+--------
+
+The docs directory contains several files ending in ".txt". Write a backup script that will create a backups folder and copy each of these files there.
+
+* Run the script
+* Delete two of the original text files and use nano to edit another
+* Use sdiff to compare the file you've changed with the backed up version
+* Read the cp man page to find out how to restore the deleted files from the backup folder without overwriting the changes you have made to the other files
+
+Solution
+--------
+
+The script (backup.sh):
+
+```
+mkdir -p ~/shell-training/docs/backup
+cp ~/shell-training/docs/*.txt ~/shell-training/docs/backup
+```
+
+Restore deleted files without overwriting:
+
+```
+cp -n ~/shell-training/docs/backup/* ~/shell-training/docs/
+```
+
+Exercise
+--------
+
+1. Use the wget command to download Alice's Adventures in Wonderland: https://www.gutenberg.org/files/11/11.txt
+2. Use less to read the file, search for specific words, and step through the results
+3. Use grep to print lines containing a specific word or phrase to the screen; e.g. how many times is the Cheshire Cat mentioned?
+4. Use sed to replace every instance of Alice with your own name, and redirect the result to a new file.
+5. Using a combination of head and tail, find lines 325-335
 
 Solution
 --------
 
 ```
-[user@host IOM-animals]$ sort *.txt | head -50 | tail -1
-coot, fulica atra
+wget https://www.gutenberg.org/files/11/11.txt
+less 11.txt
+grep "Cheshire Cat" 11.txt
+sed 's/Alice/YourName/g' 11.txt > YourName.txt
+head -n 335 11.txt | tail
 ```
-
-* To get the 50th line, use head to get the first 50 lines and pipe it to tail to get the last one
 
 Exercise
 --------
-```shell-training/data/``` contains 300 data files, each of which *should* contain 100 values.
-One of these files is missing some data though...
 
-* Use a series of commands connected by pipes to identify the file with missing data
-* **hint** ```wc -w``` will tell you the number of values in a file, ```sort -n``` will sort numerically
+* In the docs directory, create a variable called files listing all of the text files.
+* Loop through this list and print out the first line from each file.
 
 Solution
 --------
 
 ```
-[user@host data]$ wc -w values* | sort -n | head -1
-    99 values44
+cd ~/shell-training/docs
+files=$(ls)
+for file in $files; do head -n 1 $file; done
 ```
-
-* 'wc -w' tells you how many values are in each file
-* sort this output to put the files in order of the number of values
-* use head to select the first line, which contains the name of the file with the smallest number of values
 
 Exercise
 --------
+
 * Use a for loop to create five directories called calculation_?, where ? is a number.
 * Use a loop to create five directories, each one the parent of the next.
 
@@ -117,178 +151,64 @@ Solution
 --------
 
 ```
-[user@host ~]$ for (( i=1 ; i<=5 ; i++ ))
-> do
-> mkdir calculation_$i
-> done
-[user@host ~]$
+for ((i=1;i<=5;i++)); do mkdir calculation_$i; done
 ```
 
 ```
-[user@host ~]$ for (( i=1 ; i<=5 ; i++ ))
-> do
-> mkdir calculation_$i
-> cd calculation_$i
-> done
-[user@host calculation_5]$
-```
-
-* In the second case, two commands are executed each time you go through the loop.
-* A new directory is created and then the working directory is changed to the new directory.
-* On the next iteration, the new directory is then created inside the previous one.
-
-
-Exercise
---------
-
-* In the wildcards directory, create a variable called *files* listing all of the text files.
-* Loop through this list and print out the first line from each file.
-
-Solution
---------
-
-```
-[user@host wildcards]$ files=$( ls *.txt )
-[user@host wildcards]$ for f in $files
-> do
-> head -1 $f
-> done
-```
-
-Or
-
-```
-[user@host wildcards]$ for f in $( ls *.txt )
-> do
-> head -1 $f
-> done
+for ((i=1;i<=5;i++)); do mkdir calculation_$i; cd calculation_$i; done
 ```
 
 Exercise
 --------
 
-* What will this command print to the screen?
-
-```
-[user@host wildcards]$ for filename in *.txt
-> do
-> echo $filename
-> cat $filename > new-file.txt
-> done
-```
-
-* What will the contents of new-file.txt be and why?
-
-Solution
---------
-
-* What will this command print to the screen?
-  + The name of each .txt file in the current directory
-  + On each iteration the echo command prints a different file name
-
-* What will the contents of new-file.txt be and why?
-  + The content of new-file.txt will be the same as xyz.txt
-  + On each iteration the contents of a different file are written to new-file.txt, overwriting whatever was written on the previous iteration
-  + This is because we used '>' to write the output of cat to new-file.txt
-  + Using '>>' instead would result in each file's content being appended to the end of new-file.txt
-
-Exercise:
----------
-
-* Recreate the ```a_directory/inside/the_other``` tree if you deleted it.
-
-* Add write permission for users from your group for the full directory tree with one single **chmod** command (look in the man pages for more information).
-
-* What happens if you can read but not execute a directory?
+* Find a partner who is in the same group as you. Use the groups command to check.
+* In your home directory, create a new directory and give members of your group write access to it, but take away read access.
+* Tell your partner the absolute path to the directory you've given them write access to.
+* Share files by copying them to each other's shared directories.
 
 Solution
 --------
 
 ```
-[user@host ~]$ mkdir -p a_directory/inside/the_other
-[user@host ~]$ ls -Rl a_directory/
-a_directory/:
-total 0
-drwxr-xr-x 3 cceaxxx cceas0 256 Nov  6 10:09 inside
-
-a_directory/inside:
-total 0
-drwxr-xr-x 2 cceaxxx cceas0 256 Nov  6 10:09 the_other
-
-a_directory/inside/the_other:
-total 0
-[user@host ~]$ chmod -R g+w a_directory
-[user@host ~]$ ls -Rl a_directory/
-a_directory/:
-total 0
-drwxrwxr-x 3 cceaxxx cceas0 256 Nov  6 10:13 inside
-
-a_directory/inside:
-total 0
-drwxrwxr-x 2 cceaxxx cceas0 256 Nov  6 10:13 the_other
-
-a_directory/inside/the_other:
-total 0
-```
-
-* 'ls -Rl' shows us the permissions set for each directory
-* The permissions list for each directory changes from drwxr-xr-x to drwxrwxr-x
-
-Exercise:
---------
-
-* Create a "Hello world"-like script using a text editor and execute it.
-
-* Redirect the output from your script to a file or another program.
-
-Solution
---------
-
-A hello world script:
-
-```
-#!/bin/bash
-
-echo "Hello world!"
-```
-
-Make it executable:
-
-```
-[user@host ~]$ chmod +x hello-world.sh
-```
-
-Run the script:
-
-```
-[user@host ~]$ ./hello-world.sh
-Hello World!
-```
-
-Send the output to a file:
-
-```
-[user@host ~]$ ./hello-world.sh > hello.txt
-[user@host ~]$ cat hello.txt
-Hello World!
-```
-
-Send the output to another program:
-
-```
-[user@host ~]$ ./hello-world.sh | wc -w
-2
+mkdir ~/group
+chmod g+w-r ~/group
+cp <file> /home/<username>/group
 ```
 
 Exercise
 --------
 
-* Write a script which will create as many numbered directories as you want when you run it.
+The data folder contains 200 files. Each file is named according to a type of measurement (A or B), and a location (1-100) e.g. A21, B56 etc. The scripts folder contains a python script which takes the names of an A and a B file as arguments e.g. scripts/calculatescore.py data/A_1 data/B_1 This will calculate a score based on the data in the two files and print it to standard output along with the name of the files used.
+
+1. Make calculate_score.py executable
+2. Use a for loop to run through the data files corresponding to each location and generate a score
+3. Modify the for loop to save the scores to a file
+4. Use the sort command to find the location with the highest score
 
 Solution
 --------
 
-The script:
+```
+cd ~/shell-training
+chmod u+x scripts/calculate_score.py
+for ((i=1;i<=100;i++))
+do
+scripts/calculate_score.py data/A_$i data/B_$i >> results
+done
+sort results
+```
+
+Location 80 has the highest score with 0.18
+
+Exercise
+--------
+
+You can now control the number of times a for loop iterates by including a number as an argument when you call it. Write a script which will create as many numbered directories as you want when you run it.
+
+Solution
+--------
+
+The script (n-dirs.sh):
 
 ```
 #!/bin/bash
@@ -332,8 +252,8 @@ head -$2 $3 | tail -$(($2 - $1 + 1))
 Running the script:
 
 ```
-[user@host wildcards]$ chmod +x mid.sh
-[user@host wildcards]$ ./mid.sh 5 8 cake.txt
+[user@host docs]$ chmod +x mid.sh
+[user@host docs]$ ./mid.sh 5 8 cake.txt
 such as pastries, meringues, custards and pies.
 
 Typical cake ingredients are flour, sugar, eggs, and butter
