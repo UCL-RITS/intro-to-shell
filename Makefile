@@ -1,6 +1,6 @@
 PANDOC=pandoc
 
-ROOT=""
+ROOT="/intro-to-shell"
 
 PANDOCARGS=-t revealjs -s -V theme=night --css=http://lab.hakim.se/reveal-js/css/theme/night.css \
 					 --css=$(ROOT)/css/ucl_reveal.css --css=$(ROOT)/site-styles/reveal.css \
@@ -42,11 +42,10 @@ indigo: indigo-jekyll-master Makefile
 	touch indigo
 
 _site: indigo intro-to-shell/intro-to-shell-reveal.html
-	jekyll build	
+	jekyll build
 
 clean:
 	rm -f intro-to-shell/*.html
 	rm -f index.html
 	rm -rf _site
 	rm -rf images js css _includes _layouts favicon* master.zip indigo-jekyll-master
-
