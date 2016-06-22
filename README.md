@@ -20,3 +20,7 @@ You need:
 
 * To build do: make
 * To test do: make; jekyll serve
+
+Deployed to:
+
+rits.github-pages.ucl.ac.uk/intro-to-shell via travis
