@@ -1,0 +1,529 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="http://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Quick reference</title>
+
+  <link href="/intro-to-shell/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/intro-to-shell/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/intro-to-shell/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/intro-to-shell/site-styles/ipython.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/intro-to-shell/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/intro-to-shell/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/intro-to-shell/favicon-144.png">
+
+  <script src="/intro-to-shell/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/intro-to-shell/js/lib/html5shiv-printshiv.min.js', '/intro-to-shell/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/intro-to-shell/js/lib/jquery-1.9.1.min",
+        googleAnalyticsIdsArray: [] //specify array of site specific id's NOT UCL generic UA-943297-1
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/intro-to-shell/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/intro-to-shell/js/lib/require.min.js"></script>
+    <script src="/intro-to-shell/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/intro-to-shell/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/intro-to-shell/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, people and more" class="search-form__input search-form__input--search" value="">
+						</div>
+						<input type="submit" name="sumbit" value="Go" class="btn search-form__input search-form__input--submit" />
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="index.php" class="masthead__link">UCL Home</a>
+						</li>
+						<li class="masthead__item"><a href="prospective-students.php" class="masthead__link">Prospective students</a>
+						</li>
+						<li class="masthead__item"><a href="current-students.php" class="masthead__link">Current students</a>
+						</li>
+						<li class="masthead__item"><a href="staff.php" class="masthead__link">Staff</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">Introduction to the Unix shell</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+
+
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/intro-to-shell/intro-to-shell/">Course Content</a><ul> <li class="active"> <a href="/intro-to-shell/intro-to-shell/intro-to-shell.html">Course slides</a> </li> <li class="active"> <a href="/intro-to-shell/intro-to-shell/quick-reference.html">Quick reference</a> </li> <li class="active"> <a href="/intro-to-shell/intro-to-shell/solutions.html">Exercise solutions</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/intro-to-shell/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          <nav class="breadcrumb clearfix">
+            <ul class="breadcrumb__list">
+              <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/">UCL</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/ISD">ISD</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services">Our services</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it">Research IT</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it/training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/intro-to-shell/">Intro to shell</a></li>
+
+
+
+            </ul>
+          </nav>
+         <div class="site-content__main">
+          
+          
+          
+
+    <h2>General tips</h2>
+
+<ul>
+<li>Uppercase and lowercase letters are different:
+
+<ul>
+<li>A file called thesis.txt is different from Thesis.txt and tHeSiS.tXt</li>
+</ul></li>
+<li>Highlight text in the terminal and right click to paste text
+
+<ul>
+<li>Right clicking also works for pasting from the Windows clipboard</li>
+</ul></li>
+<li>Press the up arrow on your keyboard to cycle through previous commands</li>
+<li>Tab will autocomplete file/directory names when typing commands</li>
+<li>Be careful with spaces when writing commands - spaces should separate each option or argument</li>
+</ul>
+
+<h2>Basic navigation</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">ls</td>
+<td style="text-align: left">list contents of the current directory (except hidden files)</td>
+</tr>
+<tr>
+<td style="text-align: left">ls -a</td>
+<td style="text-align: left">list <em>all</em> contents of the current directory</td>
+</tr>
+<tr>
+<td style="text-align: left">ls -l</td>
+<td style="text-align: left">long-form list of contents, showing file properties</td>
+</tr>
+<tr>
+<td style="text-align: left">ls &lt;path&gt;</td>
+<td style="text-align: left">list contents of specified directory</td>
+</tr>
+<tr>
+<td style="text-align: left">pwd</td>
+<td style="text-align: left">print working directory (full path)</td>
+</tr>
+<tr>
+<td style="text-align: left">cd &lt;path&gt;</td>
+<td style="text-align: left">go to specified directory</td>
+</tr>
+<tr>
+<td style="text-align: left">cd ..</td>
+<td style="text-align: left">go up one level to parent directory</td>
+</tr>
+<tr>
+<td style="text-align: left">cd ~</td>
+<td style="text-align: left">go to current user&#39;s home directory</td>
+</tr>
+</tbody></table>
+
+<h2>Files and directories</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">mkdir &lt;new-directory&gt;</td>
+<td style="text-align: left">create a new directory</td>
+</tr>
+<tr>
+<td style="text-align: left">mkdir -p abc/123</td>
+<td style="text-align: left">create two directories: one called <em>123</em> inside another called <em>abc</em></td>
+</tr>
+<tr>
+<td style="text-align: left">cp &lt;file-name&gt; &lt;new-file-name&gt;</td>
+<td style="text-align: left">create a copy of a file with a new name</td>
+</tr>
+<tr>
+<td style="text-align: left">cp &lt;file-name&gt; &lt;path&gt;</td>
+<td style="text-align: left">copy a file to another folder</td>
+</tr>
+<tr>
+<td style="text-align: left">cp &lt;file-name&gt; &lt;path&gt;/&lt;new-file-name&gt;</td>
+<td style="text-align: left">create a copy with a new name in another folder</td>
+</tr>
+<tr>
+<td style="text-align: left">mv &lt;file-name&gt; &lt;new-file-name&gt;</td>
+<td style="text-align: left">rename a file</td>
+</tr>
+<tr>
+<td style="text-align: left">mv &lt;file-name&gt; &lt;path&gt;</td>
+<td style="text-align: left">move a file to another folder</td>
+</tr>
+<tr>
+<td style="text-align: left">rm &lt;file-name&gt;</td>
+<td style="text-align: left">delete a file</td>
+</tr>
+<tr>
+<td style="text-align: left">rm -r &lt;directory&gt;</td>
+<td style="text-align: left">delete a directory and all of its contents</td>
+</tr>
+<tr>
+<td style="text-align: left">nano &lt;file-name&gt;</td>
+<td style="text-align: left">open a new or existing file in a simple text editor</td>
+</tr>
+<tr>
+<td style="text-align: left">chmod ug+x &lt;file-name&gt;</td>
+<td style="text-align: left">give user and group execute permission for a file</td>
+</tr>
+</tbody></table>
+
+<h2>Inspecting file contents</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">cat &lt;file-name&gt;</td>
+<td style="text-align: left">print the contents of a file to the screen</td>
+</tr>
+<tr>
+<td style="text-align: left">less &lt;file-name&gt;</td>
+<td style="text-align: left">opens file contents for inspection, allows scrolling, type q to quit</td>
+</tr>
+<tr>
+<td style="text-align: left">head -5 &lt;file-name&gt;</td>
+<td style="text-align: left">prints first 5 lines of a file</td>
+</tr>
+<tr>
+<td style="text-align: left">tail -3 &lt;file-name&gt;</td>
+<td style="text-align: left">prints last 3 lines of a file</td>
+</tr>
+<tr>
+<td style="text-align: left">sdiff &lt;file-name&gt; &lt;file-name&gt;</td>
+<td style="text-align: left">visualise and compare two files side by side</td>
+</tr>
+</tbody></table>
+
+<h2>Wildcards</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">ls *.txt</td>
+<td style="text-align: left">list all files ending in <em>.txt</em></td>
+</tr>
+<tr>
+<td style="text-align: left">ls ???</td>
+<td style="text-align: left">list all files with names exactly three characters long</td>
+</tr>
+<tr>
+<td style="text-align: left">ls [abc]*</td>
+<td style="text-align: left">list all files beginning with a, b or c</td>
+</tr>
+</tbody></table>
+
+<h2>Output redirection and pipiing</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">echo &quot;Some text&quot; &gt; a-file</td>
+<td style="text-align: left">send standard output of a command to a file (overwrites existing content)</td>
+</tr>
+<tr>
+<td style="text-align: left">echo &quot;Some text&quot; &gt;&gt; a-file</td>
+<td style="text-align: left">append standard output of a command to the end of a file (no overwrite)</td>
+</tr>
+<tr>
+<td style="text-align: left">ls &#124; sort</td>
+<td style="text-align: left">pipe standard output of a command to another command</td>
+</tr>
+</tbody></table>
+
+<h2>Variables, sequences and loops</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">VAR1=hello</td>
+<td style="text-align: left">create a variable and set its value</td>
+</tr>
+<tr>
+<td style="text-align: left">echo \$VAR1</td>
+<td style="text-align: left">print the value of VAR1</td>
+</tr>
+<tr>
+<td style="text-align: left">FILENAMES=\$(ls)</td>
+<td style="text-align: left">save the output of a command as a variable</td>
+</tr>
+<tr>
+<td style="text-align: left">SUM=\$((2 + \$TWO))</td>
+<td style="text-align: left">perform integer arithmetic with variables</td>
+</tr>
+<tr>
+<td style="text-align: left">seq 5 10</td>
+<td style="text-align: left">print a sequence from 5 to 10</td>
+</tr>
+<tr>
+<td style="text-align: left">seq 1 2 9</td>
+<td style="text-align: left">print a sequence from 1 to 9 with a stride of 2</td>
+</tr>
+<tr>
+<td style="text-align: left">seq -f %03g 1 2 9</td>
+<td style="text-align: left">print a sequence padded with zeroes to the left</td>
+</tr>
+<tr>
+<td style="text-align: left">for i in \$(seq 1 5); do echo iteration$i; done</td>
+<td style="text-align: left">loop through a sequence and repeat the same instruction for each value</td>
+</tr>
+<tr>
+<td style="text-align: left">for ((i=1; i&lt;=5; i++)); do echo iteration$i; done</td>
+<td style="text-align: left">alternative method for looping through a sequence</td>
+</tr>
+</tbody></table>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Facilities</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/departments/faculties">Faculties and departments</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/library/">Library</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/museums">Museums and Collections</a></li>
+					<li class="footer__item"><a href="http://www.thebloomsbury.com/">UCL Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/maps">Maps and buildings</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+                <h2 class="as-h5">Locations</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/australia">UCL Australia</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/qatar">UCL Qatar</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/global">UCL Global</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-3">
+                <h2 class="as-h5">Connect with us</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/enterprise">Businesses</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/media">Media Relations</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/hr/jobs/">Jobs</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/makeyourmark">Give to UCL</a></li>
+				</ul>
+
+      </article>
+  
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2016-06-23 13:25:06 +0000 UCL</li>
+      <li class="text-muted small"><a href="#">Disclaimer</a>
+      </li>
+      <li class="text-muted small"><a href="#">Freedom of Information</a>
+      </li>
+      <li class="text-muted small"><a href="#">Accessibility</a>
+      </li>
+      <li class="text-muted small"><a href="#">Privacy</a>
+      </li>
+      <li class="text-muted small"><a href="#">Cookies</a>
+      </li>
+      <li class="text-muted small"><a href="#">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/intro-to-shell/js/lib/require.min.js"></script>
+  <script src="/intro-to-shell/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/intro-to-shell/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

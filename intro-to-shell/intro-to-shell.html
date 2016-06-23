@@ -1,0 +1,1720 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="http://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Course slides</title>
+
+  <link href="/intro-to-shell/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/intro-to-shell/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/intro-to-shell/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/intro-to-shell/site-styles/ipython.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/intro-to-shell/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/intro-to-shell/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/intro-to-shell/favicon-144.png">
+
+  <script src="/intro-to-shell/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/intro-to-shell/js/lib/html5shiv-printshiv.min.js', '/intro-to-shell/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/intro-to-shell/js/lib/jquery-1.9.1.min",
+        googleAnalyticsIdsArray: [] //specify array of site specific id's NOT UCL generic UA-943297-1
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/intro-to-shell/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/intro-to-shell/js/lib/require.min.js"></script>
+    <script src="/intro-to-shell/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/intro-to-shell/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/intro-to-shell/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, people and more" class="search-form__input search-form__input--search" value="">
+						</div>
+						<input type="submit" name="sumbit" value="Go" class="btn search-form__input search-form__input--submit" />
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="index.php" class="masthead__link">UCL Home</a>
+						</li>
+						<li class="masthead__item"><a href="prospective-students.php" class="masthead__link">Prospective students</a>
+						</li>
+						<li class="masthead__item"><a href="current-students.php" class="masthead__link">Current students</a>
+						</li>
+						<li class="masthead__item"><a href="staff.php" class="masthead__link">Staff</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">Introduction to the Unix shell</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+
+
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+<li class="active"> <a href="/intro-to-shell/intro-to-shell/">Course Content</a><ul> <li class="active"> <a href="/intro-to-shell/intro-to-shell/intro-to-shell.html">Course slides</a> </li> <li class="active"> <a href="/intro-to-shell/intro-to-shell/quick-reference.html">Quick reference</a> </li> <li class="active"> <a href="/intro-to-shell/intro-to-shell/solutions.html">Exercise solutions</a> </li></ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/intro-to-shell/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          <nav class="breadcrumb clearfix">
+            <ul class="breadcrumb__list">
+              <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/">UCL</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/ISD">ISD</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services">Our services</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it">Research IT</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it/training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/intro-to-shell/">Intro to shell</a></li>
+
+
+
+            </ul>
+          </nav>
+         <div class="site-content__main">
+          
+          
+             <div id="slidelink">
+               <a href="/intro-to-shell/intro-to-shell/intro-to-shell-reveal.html">Slides</a>
+             </div>
+          
+          
+
+    <h1>Introduction to the UNIX shell</h1>
+
+<h2>Overview</h2>
+
+<ul>
+<li><p>Navigating the filesystem</p></li>
+<li><p>File manipulation</p></li>
+<li><p>Wildcards, redirection and piping</p></li>
+<li><p>Variables and loops</p></li>
+<li><p>File properties and permissions</p></li>
+<li><p>Scripts</p></li>
+<li><p>And more...</p></li>
+</ul>
+
+<h2>Connecting to a computer: 1970s</h2>
+
+<p><img src="../assets/terminal-serial.svg" alt=""></p>
+
+<h2>Connecting to a computer: over the Internet</h2>
+
+<p><img src="../assets/terminal-ssh.svg" alt=""></p>
+
+<p>Communication <em>encrypted!</em></p>
+
+<h2>Access to Legion</h2>
+
+<ul>
+<li><p>To access one of the login nodes (remotely) from a Unix machine:
+<code>
+ssh &lt;username&gt;@legion.rc.ucl.ac.uk
+</code></p></li>
+<li><p>Log on using UCL username/password</p></li>
+<li><p>On Windows (e.g. Desktop@UCL) you can use PuTTY.</p></li>
+</ul>
+
+<h2>Access to Legion</h2>
+
+<p><img src="../assets/puttylocation.png" alt=""></p>
+
+<h2>Access to Legion</h2>
+
+<p><img src="../assets/puttyconfig.png" alt=""></p>
+
+<h1>Navigating the filesystem</h1>
+
+<h2>Command Prompt</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$
+</code></pre></div>
+<ul>
+<li><p>On Legion the command prompt has the form <strong>[&lt;username&gt;@&lt;host name&gt; &lt;present directory&gt;]$</strong></p></li>
+<li><p><strong>&lt;user name&gt;</strong> is the Unix user name (your UCL user ID).</p></li>
+<li><p><strong>&lt;host name&gt;</strong> is the name of the computer that you are accessing.</p></li>
+<li><p><strong>&lt;present directory&gt;</strong> is the directory that the user is currently in.</p></li>
+<li><p>Other systems you log into may have a different form of prompt.</p></li>
+</ul>
+
+<h2>Command Prompt</h2>
+
+<ul>
+<li><p>Read evaluate print loop</p>
+
+<ul>
+<li>User types a command and presses enter</li>
+<li>The shell <em>reads</em> this command, and <em>evaluates</em> it</li>
+<li>The shell then <em>prints</em> any output to the screen and returns the command prompt to the user</li>
+</ul></li>
+</ul>
+
+<h2>Some files to play with</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ git clone https://github.com/tcouch/shell-training.git
+</code></pre></div>
+<ul>
+<li>Copy this from the slides and right click in the terminal to paste it in.</li>
+</ul>
+
+<h2>What&#39;s in here?</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ls
+Scratch  shell-training
+</code></pre></div>
+<ul>
+<li><strong>ls</strong> - lists the contents of the current directory</li>
+</ul>
+
+<h2>What&#39;s over there?</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ls shell-training
+animals  data  docs  scripts
+</code></pre></div>
+<ul>
+<li>Give ls the name of a directoty as an <em>argument</em> to list the contents of that directory</li>
+</ul>
+
+<h2>Hidden files and directories</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ls -a
+.              .bash_logout  Scratch
+..             .bashrc       shell-training
+.bash_history  .emacs        .ssh
+</code></pre></div>
+<ul>
+<li>Files starting with &quot;.&quot; are hidden</li>
+<li>We have changed the default behaviour of <strong>ls</strong> with a switch, also known as a flag or option</li>
+<li>Always leave a space to separate commands, switches and arguments</li>
+<li>Type <code>man ls</code> for a list of options you can use with ls (q to quit)</li>
+</ul>
+
+<h2>Hidden files and directories</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ls -a
+.       .cshrc      shell-training
+..      .config     .ssh
+.bash_history   .emacs          
+</code></pre></div>
+<ul>
+<li><strong>.</strong> - Present working directory (in this case ~)</li>
+<li><strong>..</strong> - Parent directory to the current directory (in this case /home)</li>
+</ul>
+
+<h2>Where am I?</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ pwd
+/home/username
+[user@host ~]$
+</code></pre></div>
+<ul>
+<li><strong>pwd</strong> (print working directory) - returns the full path to your current working directory</li>
+<li><strong>~</strong> &#39;tilde&#39; is shorthand for your home directory</li>
+<li><strong>/</strong> - the <em>root</em> directory</li>
+<li>Note: Windows uses backslashes &#39;\&#39; in paths, everything else uses forward slashes</li>
+</ul>
+
+<h2>Filesystem structure</h2>
+
+<p><img src="../assets/directorystructure.png" alt=""></p>
+
+<h2>Changing directory</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ pwd
+/home/username
+[user@host ~]$ cd shell-training
+[user@host shell-training]$ pwd
+/home/username/shell-training
+[user@host shell-training]$ cd ..
+[user@host ~]$ cd /
+[user@host /]$ 
+</code></pre></div>
+<ul>
+<li><strong>cd</strong> - Type <em>cd</em> followed by the path to a directory to change into that directory</li>
+<li><strong>..</strong> - The current directory&#39;s parent directory</li>
+<li><strong>/</strong> - Everything sits under the &quot;root&quot; directory</li>
+</ul>
+
+<h2>Absolute path</h2>
+
+<p><img src="../assets/abspath.png" alt=""></p>
+
+<p>/home/alice</p>
+
+<ul>
+<li>absolute paths always begin with &#39;/&#39;</li>
+</ul>
+
+<h2>Relative path</h2>
+
+<p><img src="../assets/relpath.png" alt=""></p>
+
+<p>../home/alice</p>
+
+<h2>Absolute and relative paths</h2>
+
+<p>There are many ways of writing the path to a directory.</p>
+
+<p>Every directory has a unique absolute path:
+<code>ls /home/username/shell-training/</code> </p>
+
+<p>Relative paths depend on your current location:
+<code>ls shell-training/</code></p>
+
+<p>This relative path begins with the home alias and works from anywhere:
+<code>ls ~/shell-training/</code></p>
+
+<p>This path works too:
+<code>
+cd /bin/../tmp/../home/username/shell-training
+</code></p>
+
+<h2>Tab completion</h2>
+
+<ul>
+<li>Go to your home directory: <code>cd ~</code></li>
+<li>What happens if you type <code>cd sh</code> and then press the <em>tab</em> key?</li>
+</ul>
+
+<h2>Exercises</h2>
+
+<p>The shell-training folder has the following structure:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">~/shell-training
+|--animals
+|--data
+|--docs
+|--scripts
+</code></pre></div>
+<ol>
+<li>What is the absolute path to the docs directory? Use the absolute path to change into this directory</li>
+<li>From there, list the contents of the animals directory using a relative path</li>
+</ol>
+
+<h2>Exercises</h2>
+
+<ol>
+<li>What does typing <code>cd</code> on its own do? Try typing it from several different locations.</li>
+<li>What does typing <code>cd -</code> do? Try typing it from several different locations.</li>
+</ol>
+
+<h1>Creating Files and Directories</h1>
+
+<h2>Directory creation</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ mkdir a_directory
+[user@host ~]$ ls
+a_directory  Scratch  shell-training
+</code></pre></div>
+<ul>
+<li>Type <em>mkdir</em> followed by the name of the directory you want to create.</li>
+</ul>
+
+<h2>Directory creation</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ mkdir b_directory c_directory
+[user@host ~]$ ls
+a_directory  b_directory  c_directory  Scratch  shell-training
+</code></pre></div>
+<ul>
+<li>You can create two directories at the same time: just separate the names with a space.</li>
+</ul>
+
+<h2>Directory creation</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ mkdir shell-training/a_directory
+[user@host ~]$ ls shell-training
+a_directory  animals  data  docs  scripts
+</code></pre></div>
+<ul>
+<li>You can put the path to an existing directory before your new directory name to create a directory in that location.</li>
+</ul>
+
+<h2>Nano: A simple file editor</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ nano a_file
+</code></pre></div>
+<p><img src="../assets/nano.png" alt=""></p>
+
+<ul>
+<li>If the file exists nano will open it, otherwise it will open a blank page</li>
+</ul>
+
+<h2>Nano</h2>
+
+<p><img src="../assets/nano2.png" alt=""></p>
+
+<ul>
+<li>Commands are along the botton of editor screen</li>
+<li>^ - shorthand for control key</li>
+<li>Type Ctrl-O then Enter to save, Ctrl-X to exit</li>
+</ul>
+
+<h2>Other editors</h2>
+
+<p>There are many other (better but more complex) text file editors on the system such as <strong>vim</strong>, <strong>emacs</strong> and <strong>nedit</strong>.</p>
+
+<p>Use the one you feel most comfortable with.</p>
+
+<h2>Naming files and directories</h2>
+
+<ul>
+<li>You can use spaces in file and directory names, but this is generally a bad idea as you will have to use quotes whenever you refer to that file.</li>
+<li>Uppercase and lowercase characters are different: FILENAME does not equal filename</li>
+<li>Avoid special characters such as: $:/\,[]{}()!;&quot;&#39;*?&lt;&gt;|</li>
+<li>Filename extensions such as &#39;.txt&#39; or &#39;.pdf&#39; are a convention, not a requirement</li>
+</ul>
+
+<h2>A simple script</h2>
+
+<ul>
+<li>A script is a list of commands, written in a text file, to be run one after another e.g.:</li>
+</ul>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ nano a_script.sh
+</code></pre></div><div class="highlight"><pre><code class="language-" data-lang="">echo "Creating new directory..."
+mkdir new_directory
+ls
+echo "Finished"
+</code></pre></div>
+<h2>Running a script</h2>
+
+<ul>
+<li>You can use the source command to run the script like so:</li>
+</ul>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ source a_script.sh
+Creating new directory...
+a_directory   a_script.sh   c_directory     Scratch
+a_file        b_directory   new_directory   shell-training
+Finished
+</code></pre></div>
+<h2>Running a script</h2>
+
+<ul>
+<li>What happens if you run this script from another directory?</li>
+</ul>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ cd shell-training
+[user@host shell-training]$ source ../a_script.sh
+</code></pre></div>
+<h2>Running a script</h2>
+
+<ul>
+<li>The new directory is created in the current working directory, not the directory where the script file is located.</li>
+</ul>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host shell-training]$ source ../a_script.sh
+Creating new directory...
+a_directory   animals   data   docs   new_directory   scripts
+Finished
+</code></pre></div>
+<h2>Exercise</h2>
+
+<p>Write a script that will do the following steps:
+   a. Create a new directory called cake inside your home directory
+   b. Use an absolute path to create a directory inside cake called &quot;Cheesecake&quot;
+   c. Change into the Cheesecake directory
+   d. Use a relative path to create another directory inside cake called &quot;Battenberg&quot;
+   e. Return to the home directory and list the contents of cake</p>
+
+<p>The final set of directories should look like this:
+<code>
+~/cake
+|--Cheesecake
+|--Battenberg
+</code></p>
+
+<h2>Exercise</h2>
+
+<p>Read the man page for mkdir to find out what the -p option does. Use it to create the following set of directories with a single command:
+<code>
+~/bread
+|--focaccia
+|--naan
+</code></p>
+
+<h1>Wildcards</h1>
+
+<h2>Wildcards</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host shell-training]$ cd docs
+[user@host shell-training]$ ls
+123.dat    abc.txt  cake.txt        def.txt   r2d2.bot        xyz.txt
+abcde.txt  ab.txt   cheesecake.txt  food.txt  some-maths.txt
+[user@host docs]$ wc abc.txt def.txt xyz.txt
+  10   52  168 abc.txt
+   7   61  394 def.txt
+  11   99  589 xyz.txt
+  28  212 1151 total
+</code></pre></div>
+<ul>
+<li><code>wc</code> counts lines, words and bytes for each file</li>
+<li>We can give wc the names of the files we want to inspect as arguments</li>
+</ul>
+
+<h2>Wildcards</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host docs]$ wc *.txt
+  13  119  683 abcde.txt
+  10   52  168 abc.txt
+   8   83  454 ab.txt
+  26  206 1332 cake.txt
+  11  105  656 cheesecake.txt
+   7   61  394 def.txt
+  13   85  561 food.txt
+   6   12   56 some-maths.txt
+  11   99  589 xyz.txt
+ 105  822 4893 total
+</code></pre></div>
+<ul>
+<li><code>*</code> is a wildcard that matches zero or more characters</li>
+<li>Bash automatically expands *.txt into a list of filenames matching that pattern</li>
+</ul>
+
+<h2>Wildcards</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host docs]$ ls a*.txt
+abcde.txt  abc.txt  ab.txt
+</code></pre></div>
+<ul>
+<li><code>*</code> is a wildcard that matches zero or more characters.</li>
+</ul>
+
+<h2>Wildcards</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host docs]$ ls ???.txt
+abc.txt def.txt xyz.txt
+</code></pre></div>
+<ul>
+<li><code>?</code> is also a wildcard. It matches a single character.</li>
+</ul>
+
+<h2>Wildcards</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host docs]$ ls [fx]*
+food.txt  xyz.txt
+</code></pre></div>
+<ul>
+<li>Square brackets will match any one of the characters listed inside them.</li>
+</ul>
+
+<h1>Manipulating Files</h1>
+
+<h2>Inspecting files</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host animals]$ less birds.txt
+</code></pre></div>
+<ul>
+<li><strong>less</strong> - visualise a text file:
+
+<ul>
+<li>use arrow keys</li>
+<li>page up/page down</li>
+<li>search by typing &quot;/&quot; and press &quot;n&quot; to step through the results</li>
+<li>quit by typing &quot;q&quot;</li>
+</ul></li>
+</ul>
+
+<h2>Searching files</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host animals]$ grep bat mammals.txt
+whiskered bat, myotis mystacinus
+natterer's bat, myotis nattereri
+daubenton's bat, myotis daubentonii
+leisler's bat, nyctalus leisleri
+brown long-eared bat, plecotus auritus
+</code></pre></div>
+<ul>
+<li><strong>grep</strong> - search for lines in a file containing a certain text string</li>
+</ul>
+
+<h2>Other file inspection tools</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Command</th>
+<th style="text-align: left">Action</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">head</td>
+<td style="text-align: left">visualise the first 10 lines of a file</td>
+</tr>
+<tr>
+<td style="text-align: left">tail</td>
+<td style="text-align: left">visualise the last 10 lines of a file</td>
+</tr>
+<tr>
+<td style="text-align: left">cat</td>
+<td style="text-align: left">print file contents to the terminal screen</td>
+</tr>
+<tr>
+<td style="text-align: left">sdiff</td>
+<td style="text-align: left">visualise and compare two files side-by-side</td>
+</tr>
+</tbody></table>
+
+<p>(Use &quot;man &lt;command&gt;&quot; to see more information)</p>
+
+<h2>Exercise</h2>
+
+<p>Use grep to search through all of the files in the animal directory to find animals with the word red in their name. Read the man page to find out how to make grep only select the word red, and not just any word containing r-e-d.</p>
+
+<h2>Copying files</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ cp a_file copy_of_a_file
+[user@host ~]$ ls
+a_directory  a_script.sh  bread  cakes.sh     copy_of_a_file  Scratch
+a_file       b_directory  cake   c_directory  new_directory   shell-training
+</code></pre></div>
+<ul>
+<li><strong>cp</strong> copy a file or directory</li>
+</ul>
+
+<h2>Moving/Renaming files and directories</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ mv a_file control.in
+[user@host ~]$ ls
+a_directory  b_directory  cake      c_directory  copy_of_a_file  Scratch
+a_script.sh  bread        cakes.sh  control.in   new_directory   shell-training
+[user@host ~]$ mv control.in a_directory
+[user@host ~]$ ls a_directory
+control.in
+</code></pre></div>
+<ul>
+<li><strong>mv</strong> - rename or move a file/directory</li>
+<li>It is possible to move and rename a file with one command</li>
+</ul>
+
+<h2>Deleting files and directories</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ rm a_directory/control.in
+[user@host ~]$ rm a_directory
+rm: cannot remove ‘a_directory/’: Is a directory
+[user@host ~]$ rm -r a_directory
+[user@host ~]$ 
+</code></pre></div>
+<ul>
+<li><strong>rm</strong> - delete a file</li>
+<li><strong>rm -r</strong> - delete a directory and all of its content</li>
+<li><strong>rm operations are irreversible!!!</strong></li>
+<li>The -i argument is highly recommended</li>
+</ul>
+
+<h2>Aliases</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ alias zap='rm -ri'
+[user@host ~]$ zap *_directory
+</code></pre></div>
+<ul>
+<li>You can create an alias for common commands to make you life easier</li>
+<li>Type <strong>alias</strong> on its own to see what aliases are already set up</li>
+</ul>
+
+<h2>Exercise</h2>
+
+<p>The docs directory contains several files ending in &quot;.txt&quot;. Write a backup script that will create a backups folder and copy each of these files there.</p>
+
+<ul>
+<li>Run the script</li>
+<li>Delete two of the original text files and use nano to edit another</li>
+<li>Use sdiff to compare the file you&#39;ve changed with the backed up version</li>
+<li>Read the cp man page to find out how to restore the deleted files from the backup folder without overwriting the changes you have made to the other files</li>
+</ul>
+
+<h1>Redirection</h1>
+
+<h2>Redirecting output to a file</h2>
+
+<p>Rather than having the output of a command printed to the screen, we can send it to be written to a file instead.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ echo hello &gt; hello.txt
+[user@host ~]$ echo hello again &gt;&gt; hello.txt
+[user@host ~]$ cat hello.txt
+hello
+hello again
+</code></pre></div>
+<ul>
+<li><code>&gt;&gt;</code> appends the output to the end of an existing file.</li>
+<li><code>&gt;</code> will overwrite any existing content.</li>
+</ul>
+
+<h2>File inspection revisited</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ cd shell-training/animals
+[user@host animals]$ head -n 5 mammals.txt
+common pipistrelle, pipistrellus pipistrellus
+whiskered bat, myotis mystacinus
+natterer's bat, myotis nattereri
+daubenton's bat, myotis daubentonii
+leisler's bat, nyctalus leisleri
+</code></pre></div>
+<ul>
+<li>Use an option <code>-n</code> with head and tail to print n lines from the start or end of a file</li>
+</ul>
+
+<h2>The middle?</h2>
+
+<p>What about printing a number of lines from the middle of a file? There&#39;s no <code>mid</code> command!</p>
+
+<p>An inefficient solution:</p>
+
+<ul>
+<li>Use <code>&gt;</code> to redirect what would normally be printed to the screen to a file instead</li>
+<li>Save the output from head to a new file</li>
+<li>Use tail to select some lines from the new file</li>
+</ul>
+
+<h2>The middle?</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host shell-training]$ head -n 15 mammals.txt &gt; temp.txt
+[user@host shell-training]$ tail -n 5 temp.txt
+european hedgehog, erinaceus europaeus
+pygmy shrew, sorex minutus
+wood mouse, apodemus sylvaticus
+house mouse, mus domesticus
+brown rat, rattus norvegicus
+</code></pre></div>
+<p>What if you wanted to do this for 1000 files? What if your work flow involves several intermediate steps? That&#39;s a lot of temporary files!</p>
+
+<h2>A better solution</h2>
+
+<p>We can use a pipe to redirect the output from one command and make it the input for another command:
+<code>
+[user@host shell-training]$ head -n 15 mammals.txt | tail -n 5
+european hedgehog, erinaceus europaeus
+pygmy shrew, sorex minutus
+wood mouse, apodemus sylvaticus
+house mouse, mus domesticus
+brown rat, rattus norvegicus
+</code></p>
+
+<h2>Another link in the chain</h2>
+
+<ul>
+<li><strong>sed</strong> can be used to find and replace words in text</li>
+</ul>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host shell-training]$ head -n 15 mammals.txt | tail -n 5 | sed 's/mouse/elephant/g'
+european hedgehog, erinaceus europaeus
+pygmy shrew, sorex minutus
+wood elephant, apodemus sylvaticus
+house elephant, mus domesticus
+brown rat, rattus norvegicus
+</code></pre></div>
+<ul>
+<li>Any number of commands can be connected in this way (memory permitting)</li>
+<li>As long as each command takes text input and produces text output</li>
+<li>Even scripts or programs you write yourself</li>
+</ul>
+
+<h2>Another link in the chain</h2>
+
+<p>You can chain any number of programs together to achieve your goal:</p>
+
+<p><img src="../assets/process6.png" alt=""></p>
+
+<p>This allows you to build up fairly complex workflows within one command-line.</p>
+
+<h2>Exercise</h2>
+
+<ol>
+<li><p>Use the wget command to download Alice&#39;s Adventures in Wonderland: https://www.gutenberg.org/files/11/11.txt</p></li>
+<li><p>Use less to read the file, search for specific words, and step through the results</p></li>
+<li><p>Use grep to print lines containing a specific word or phrase to the screen</p>
+
+<ul>
+<li>e.g. how many times is the Cheshire Cat mentioned?</li>
+</ul></li>
+<li><p>Use sed to replace every instance of Alice with your own name, and redirect the result to a new file.</p></li>
+<li><p>Using a combination of head and tail, find lines 325-335</p></li>
+</ol>
+
+<h2>More about redirection</h2>
+
+<p>There are three streams of communication between a program and its environment:</p>
+
+<ul>
+<li>Standard Output (stdout): an output stream where a program writes its data - the default destination is generally the terminal screen.</li>
+<li>Standard Error (sterr): another output stream containing error messages - also printed to the terminal screen by default.</li>
+<li>Standard Input (stdin): default source of a program&#39;s input - it is generally the command line.</li>
+</ul>
+
+<h2>Output redirection and piping</h2>
+
+<p><img src="../assets/process1.png" alt=""></p>
+
+<h2>Output redirection and piping</h2>
+
+<p><img src="../assets/process2.png" alt=""></p>
+
+<h2>Redirecting StdErr</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host docs]$ wc *.txt not_a_file &gt; txt_list 2&gt; txt_list_err
+</code></pre></div>
+<ul>
+<li><code>2&gt;</code> redirects any error messages created by a command</li>
+</ul>
+
+<h2>Output redirection and piping</h2>
+
+<p>ls -l</p>
+
+<p><img src="../assets/process3.png" alt=""></p>
+
+<h2>Output redirection and piping</h2>
+
+<p>ls -l &gt; list<em>of</em>files</p>
+
+<p><img src="../assets/process4.png" alt=""></p>
+
+<h2>Redirecting input</h2>
+
+<p>You can also redirect standard input to a command, using <code>&lt;</code> 
+to send the contents of a file in place of command line input.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host docs]$ bc &lt; some-maths.txt
+3.14285714285714285714
+9.99
+16.66666666666666666666
+10.312567
+</code></pre></div>
+<ul>
+<li><strong>bc</strong> allows calculations with floating point numbers.</li>
+</ul>
+
+<h1>Variables and Loops</h1>
+
+<h2>A simple variable</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ var1='hello'
+[user@host ~]$ echo $var1 world!
+hello world!
+</code></pre></div>
+<ul>
+<li>Don&#39;t include spaces either side of the &#39;=&#39; sign.</li>
+<li>Variables can be referenced using the &#39;$&#39; sign and their name.</li>
+</ul>
+
+<h2>Quoting variables</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ myname="John Smith"
+[user@host ~]$ echo "Hello my name is $myname. Nice to meet you."
+Hello my name is John Smith. Nice to meet you.
+[user@host ~]$ echo 'Hello my name is $myname. Nice to meet you.'
+Hello my name is $myname. Nice to meet you.
+</code></pre></div>
+<ul>
+<li>When using double quotes, bash will scan the contents and expand any variables</li>
+</ul>
+
+<h2>Quoting variables</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ fruit=orange
+[user@host ~]$ echo "I love eating $fruits."
+I love eating .
+</code></pre></div>
+<h2>Quoting variables</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ echo "I love eating ${fruit}s."
+I love eating oranges.
+</code></pre></div>
+<ul>
+<li>In some cases you will need to surround a variable name with braces.</li>
+</ul>
+
+<h2>Arithmetic with variables</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ two=2 
+[user@host ~]$ result=$(( $two + 2 )) 
+[user@host ~]$ echo $result  
+4 
+[user@host ~]$
+</code></pre></div>
+<ul>
+<li>Integer arithmetic can be done inside $(( ))
+
+<ul>
+<li>+  addition</li>
+<li>-   subtraction</li>
+<li>/   integer division</li>
+<li>*   multiplication</li>
+</ul></li>
+</ul>
+
+<h2>Storing output of commands in variables </h2>
+
+<p>Run commands inside <strong>$( )</strong> and assign the wrapped command to a variable</p>
+
+<h2>Arithmetic with variables</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ls 
+a_directory  a_file 
+[user@host ~]$ dir_contents=$( ls ) 
+[user@host ~]$ echo $dir_contents 
+a_directory a_file
+</code></pre></div>
+<h2>Updated process diagram</h2>
+
+<p><img src="../assets/processenvvars.png" alt=""></p>
+
+<h2>Special environment variables</h2>
+
+<p>What is the output of this command?</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ echo $PATH
+</code></pre></div>
+<p>Note the structure: &lt;path1&gt;:&lt;path2&gt;:&lt;path3&gt;  </p>
+
+<p>PATH is an environment variable which Bash uses to search for commands typed on the command line without a full path. </p>
+
+<p>Use the command <strong>env</strong> to discover more environment variables.</p>
+
+<h2>The for loop</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ for i in first second third
+&gt; do
+&gt; echo $i iteration
+&gt; done
+first iteration
+second iteration
+third iteration
+</code></pre></div>
+<ul>
+<li>Defines a loop in which the variable &quot;i&quot; will take the values &quot;first&quot;, &quot;second&quot; and &quot;third&quot; in that order.</li>
+<li><strong>do/done</strong> - start and end the loop iteration definition.</li>
+</ul>
+
+<h2>The for loop using an iterator</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ for (( i=1 ; i&lt;=5 ; i++ ))
+&gt; do
+&gt; echo iteration$i
+&gt; done
+iteration1
+iteration2
+iteration3
+iteration4
+iteration5
+</code></pre></div>
+<p>(Note how it is possible to create number labels)</p>
+
+<h2>Exercise</h2>
+
+<ul>
+<li>In the docs directory, create a variable called <em>files</em> listing all of the text files.</li>
+<li>Loop through this list and print out the first line from each file.</li>
+</ul>
+
+<h2>Exercise</h2>
+
+<ul>
+<li>Use a for loop to create five directories called calculation_?, where ? is a number.</li>
+<li>Use a loop to create five directories, each one the parent of the next.</li>
+</ul>
+
+<h1>File properties and permissions</h1>
+
+<h2>File properties</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ls -l
+total 368
+-rw-r--r-- 1 course1 ucaac2 167546 Jan 25  2014 11.txt
+-rw-r--r-- 1 course1 ucaac2     72 Jun  6 12:34 a_script.sh
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:41 cake
+...
+</code></pre></div>
+<ul>
+<li><strong>ls -l</strong> - list file properties (details)</li>
+</ul>
+
+<h2>File properties</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
+
+        drwxr-xr-x      - File type and permissions
+        4               - Number of links to the file
+        course1         - User name of file owner
+        ucaac2          - Group to which the file belongs 
+        4096            - size of file in bytes
+        Jun 6           - last change date
+        12:43           - last change time
+        bread           - file name
+</code></pre></div>
+<h2>File permissions</h2>
+
+<ul>
+<li><p>There are three user security classifications that apply to the ownership of a file:</p>
+
+<ul>
+<li><strong>user:</strong> the individual user that has ownership of the file</li>
+<li><strong>group:</strong> a group of users to which that user belongs</li>
+<li><strong>others:</strong> all other users (not owner or in that group)</li>
+</ul></li>
+<li><p>Each of these has three file access classifications:</p>
+
+<ul>
+<li><strong>read:</strong> permission to read the file</li>
+<li><strong>write:</strong> permission to write the file</li>
+<li><strong>execute:</strong> permission to execute (run) the file</li>
+</ul></li>
+</ul>
+
+<h2>File permissions</h2>
+
+<p><strong>drwxr-xr-x</strong> has four fields:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left"></th>
+<th style="text-align: left"></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">d</td>
+<td style="text-align: left">The file is a directory</td>
+</tr>
+<tr>
+<td style="text-align: left">rwx</td>
+<td style="text-align: left">The user has read, write and execute access</td>
+</tr>
+<tr>
+<td style="text-align: left">r-x</td>
+<td style="text-align: left">The group has read and execute access</td>
+</tr>
+<tr>
+<td style="text-align: left">r-x</td>
+<td style="text-align: left">Others have read and execute access</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Permissions</th>
+<th style="text-align: center">read</th>
+<th style="text-align: center">write</th>
+<th style="text-align: center">execute</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">rwx</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center">yes</td>
+</tr>
+<tr>
+<td style="text-align: left">rw-</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center">no</td>
+</tr>
+<tr>
+<td style="text-align: left">r--</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">no</td>
+</tr>
+<tr>
+<td style="text-align: left">r-x</td>
+<td style="text-align: center">yes</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">yes</td>
+</tr>
+<tr>
+<td style="text-align: left">---</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">no</td>
+<td style="text-align: center">no</td>
+</tr>
+</tbody></table>
+
+<h2>File permissions</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ls -l 
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
+[user@host ~]$ chmod go-rx bread
+[user@host ~]$ ls -l 
+drwx------ 2 user rcops 4096 2009-12-08 07:31 a_directory
+</code></pre></div>
+<ul>
+<li><strong>chmod</strong> - change the permissions of a file</li>
+</ul>
+
+<h2>File permissions</h2>
+
+<p>How did the permissions definition go-rx work?</p>
+<div class="highlight"><pre><code class="language-" data-lang="">chmod [ugoa][+/-][rwx] file
+</code></pre></div>
+<ul>
+<li><p>ugoa - user, group, other, all</p></li>
+<li><p>+/- - add/remove</p></li>
+<li><p>rwx - read, write, execute</p></li>
+</ul>
+
+<p>If you don&#39;t specify u,g,o or a, default is <strong>ALL</strong> (so chmod +x makes file executable for everyone).</p>
+
+<h2>What groups am I in?</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ groups
+ucaac2 legon020
+</code></pre></div>
+<h2>Exercise:</h2>
+
+<ul>
+<li>Find a partner who is in the same group as you. Use the <strong>groups</strong> command to check.</li>
+<li>In your home directory, create a new directory and give members of your group write access to it, but take away read access.</li>
+<li>Tell your partner the absolute path to the directory you&#39;ve given them write access to.</li>
+<li>Share files by copying them to each other&#39;s shared directories.</li>
+</ul>
+
+<h2>Exercise</h2>
+
+<p>The data folder contains 200 files. Each file is named according to a type of measurement (A or B), and a location (1-100) e.g. A<em>21, B</em>56 etc. The scripts folder contains a python script which takes the names of an A and a B file as arguments e.g. scripts/calculate<em>score.py data/A</em>1 data/B_1
+This will calculate a score based on the data in the two files and print it to standard output along with the name of the files used.</p>
+
+<ol>
+<li><p>Make calculate_score.py executable</p></li>
+<li><p>Use a for loop to run through the data files corresponding to each location and generate a score</p></li>
+<li><p>Modify the for loop to save the scores to a file</p></li>
+<li><p>Use the sort command to find the location with the highest score</p></li>
+</ol>
+
+<h1>Shell Scripting</h1>
+
+<h2>Shell scripting</h2>
+
+<p>So far we&#39;ve been using <strong>source</strong> to run our scripts, but it&#39;s also possible to make them executable - just like commands.</p>
+
+<h2>Step 1: The Interpreter Directive</h2>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="c">#!/bin/bash</span>
+<span class="c"># This is a very simple hello world script.</span>
+<span class="nb">echo</span> <span class="s2">"Hello, world!"</span>
+</code></pre></div>
+<ul>
+<li>#! - is used to indicate which program should be used to interpret the script
+
+<ul>
+<li>In this case it&#39;s bash, it could also be a language like python, perl, ruby etc.</li>
+<li>This must be the first line in the script</li>
+</ul></li>
+<li># - a comment (ignored by /bin/bash)</li>
+</ul>
+
+<h2>Step 2: Making it executable</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ chmod u+x hello_world.sh
+[user@host ~]$ ls -l hello-world.sh
+-rwxr--r-- 1 user ccaas0 30 Mar 31 17:10 hello_world.sh
+</code></pre></div>
+<ul>
+<li>Use <strong>chmod</strong> to change permissions on the script and make it executable</li>
+</ul>
+
+<h2>Step 3: Location</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ./hello_world.sh
+hello world!
+</code></pre></div>
+<ul>
+<li>What&#39;s with the &quot;./&quot; ?</li>
+<li>Remember the PATH!</li>
+</ul>
+
+<h2>Changing the PATH</h2>
+
+<p>If you want to be able to make your script work like a command, you need the directory it is in to be in your PATH</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ mkdir ~/scripts
+[user@host ~]$ PATH=$PATH:$HOME/scripts
+[user@host ~]$ export PATH
+</code></pre></div>
+<ul>
+<li>Create a directory in your home directory specifically for your scripts</li>
+<li>Add this directory to the PATH environmental variable</li>
+<li>Make sure the scripts you want to use are executable</li>
+</ul>
+
+<h2>Command line arguments</h2>
+
+<p>You can control your script&#39;s behaviour with arguments you pass to it when you run it.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ./script.sh var1 var2
+</code></pre></div>
+<p>Within the script:
+$1 contains &quot;var1&quot;
+$2 contains &quot;var2&quot;</p>
+
+<h2>Command line arguments</h2>
+
+<p>The script looks like this:
+```</p>
+
+<h1>!/bin/bash</h1>
+
+<p>echo The first argument is $1
+echo The second argument is $2
+echo And together they make ${1}${2}
+```</p>
+
+<p>And here it is in use:
+<code>
+[user@host ~]$ ./var-script green house
+The first argument is green
+The second argument is house
+And together they make greenhouse
+</code></p>
+
+<h2>Exercise</h2>
+
+<p>You can now control the number of times a for loop iterates by including a number as an argument when you call it. 
+Write a script which will create as many numbered directories as you want when you run it.</p>
+
+<h2>Exercise</h2>
+
+<ol>
+<li><p>Create a bash script called hi which will use the USER environment variable to say hello to you</p></li>
+<li><p>Make this script executable</p></li>
+<li><p>Create a /scripts directory in your home directory</p></li>
+<li><p>Add this directory to the PATH environment variable</p></li>
+<li><p>Move the new script there and try running it as a
+command</p></li>
+</ol>
+
+<h1>Login Scripts</h1>
+
+<h2>Variables are temporary</h2>
+
+<ul>
+<li>If you close PuTTY and log back in, you&#39;ll find your changes to PATH and any aliases you created have gone.</li>
+<li>You&#39;ll need to set them all up again if you want them to work.</li>
+<li>If you put them in a login script, they&#39;ll be setup every time you login.</li>
+</ul>
+
+<h2>Those dot files</h2>
+
+<p>Remember those hidden files in your home directory? Some of them are actually pretty useful.</p>
+
+<ul>
+<li><strong>.bash_profile</strong> is a script that runs every time you log in to the system</li>
+<li><strong>.bashrc</strong> is a script that runs every time you start a new interactive shell</li>
+<li>It&#39;s quite common for .bash_profile to include a command to run .bashrc automatically</li>
+</ul>
+
+<p>Both of these are already set up for you on Legion, but you can improve them as you like.</p>
+
+<h2>Exercise</h2>
+
+<ol>
+<li><p>Edit your .bash_profile script in your home directory and include some commands to be run when you log in. For example:</p>
+
+<ul>
+<li>alias</li>
+<li>cal</li>
+<li>echo &quot;Welcome back $USER&quot;</li>
+<li>PATH=\$PATH:\$HOME/scripts &amp;&amp; export PATH</li>
+</ul></li>
+<li><p>Close PuTTY and log back in.</p></li>
+<li><p>Now edit .bashrc to report $SHLVL when you start a new instance of bash</p></li>
+</ol>
+
+<h1>Archiving and transferring files</h1>
+
+<h2>Archiving and compression</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ tar -czvf work.tgz work
+work/
+work/program/
+work/calculations/
+work/calculations/control.in
+work/workfile
+</code></pre></div>
+<ul>
+<li><strong>tar -zcvf</strong> - archives and compresses directory trees and files 
+
+<ul>
+<li><strong>c</strong> - create archive </li>
+<li><strong>z</strong> - compress</li>
+<li><strong>v</strong> - verbose</li>
+<li><strong>f</strong> - in the following file</li>
+</ul></li>
+</ul>
+
+<h2>Accessing another system</h2>
+
+<p>Use the <strong>ssh</strong> command to login to other systems you have access to</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ssh &lt;username&gt;@aristotle.rc.ucl.ac.uk
+</code></pre></div>
+<ul>
+<li>Type Ctrl-D or logout to return to Legion</li>
+</ul>
+
+<h2>Transferring files across a network</h2>
+
+<p>To Aristotle:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ scp work.tgz &lt;username&gt;@aristotle.rc.ucl.ac.uk:
+...
+Password:
+work.tgz         100%  213     0.2KB/s   00:00
+</code></pre></div>
+<ul>
+<li>remember to put the colon at the end!</li>
+</ul>
+
+<h2>Extracting files from a compressed archive</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ tar -xzvf work.tgz 
+work/
+work/program/
+work/calculations/
+work/calculations/control.in
+work/workfile
+</code></pre></div>
+<ul>
+<li><strong>tar -z<em>x</em>vf</strong> - extracts and uncompresses directory trees and files 
+
+<ul>
+<li><strong>x</strong> - extract archive </li>
+<li><strong>z</strong> - uncompress</li>
+<li><strong>v</strong> - verbose</li>
+<li><strong>f</strong> - from the following file</li>
+</ul></li>
+</ul>
+
+<h2>Transferring files across a network</h2>
+
+<p>From Aristotle:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ scp &lt;username&gt;@aristotle.rc.ucl.ac.uk:~/work.tgz .
+...
+Password:
+work.tgz         100%  340     0.3KB/s   00:00
+</code></pre></div>
+<ul>
+<li>. means copy to this directory</li>
+</ul>
+
+<h2>Exercise</h2>
+
+<ol>
+<li><p>Use tar to create an archive of the shell-training directory</p></li>
+<li><p>Use scp to copy the archive to Aristotle: aristotle.rc.ucl.ac.uk</p></li>
+<li><p>Extract the archive file on Aristotle</p></li>
+<li><p>Use scp to copy a file from Aristotle to your home directory</p></li>
+</ol>
+
+<h1>Process control</h1>
+
+<h2>Process control</h2>
+
+<ul>
+<li><p>A process is in the:</p>
+
+<ul>
+<li><strong>foreground</strong> when it is interacting with the user via an interface (usually the shell).</li>
+<li><strong>background</strong> if it is running without interacting with the user. </li>
+<li><strong>suspended</strong> if it is neither interacting nor running.</li>
+</ul></li>
+<li><p>To run a process in the background:
+add the symbol &quot;&amp;&quot; at the end of the command line.</p></li>
+<li><p>To send a foreground process to the backgound:
+press Ctrl+z and then execute the command &quot;bg&quot;</p></li>
+<li><p>To bring a background process to the foreground:
+execute the command &quot;fg&quot;</p></li>
+</ul>
+
+<h2>Which processes are running?</h2>
+
+<p>Use the <strong>jobs</strong> command</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ sleep 60 &amp;
+[1] 24991
+[user@host ~]$ jobs
+[1]+  Running                 sleep 60 &amp;
+</code></pre></div>
+<p>Or <strong>ps</strong> for more information</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ps
+   PID TTY          TIME CMD
+ 24467 pts/6    00:00:00 bash
+ 24991 pts/6    00:00:00 sleep
+ 24996 pts/6    00:00:00 ps
+</code></pre></div>
+<h2>Killing processes</h2>
+
+<p>Use the <strong>kill</strong> command with the PID:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ kill 24991
+[1]+  Terminated              sleep 60
+</code></pre></div>
+<p>Or use the job number:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ kill %1
+[1]+  Terminated              sleep 60
+</code></pre></div>
+<h2>More information</h2>
+
+<ul>
+<li><p>Many topics not covered here:</p>
+
+<ul>
+<li>if statements</li>
+<li>case switches</li>
+<li>defining functions</li>
+<li>and many, many more...</li>
+</ul></li>
+<li><p>Google and the <strong>man</strong> pages are your friends!</p></li>
+</ul>
+
+<h1>GNU Screen</h1>
+
+<h2>Intro to GNU Screen</h2>
+
+<p><strong>Q: What happens if you want to:</strong></p>
+
+<p>Log out and turn off your PC?</p>
+
+<p>Go home and continue working?</p>
+
+<p>Freely create and delete shell sessions within one terminal?</p>
+
+<p><strong>A: Use a terminal multiplexer like GNU screen</strong></p>
+
+<h2>First, log into Aristotle</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">ssh user@aristotle.rc.ucl.ac.uk
+</code></pre></div>
+<p>(or use Putty)</p>
+
+<p><img src="../assets/terminal-ssh.svg" alt=""></p>
+
+<ul>
+<li>Take a note of which login node you are assigned!</li>
+</ul>
+
+<h2>Then, run &quot;screen&quot;</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">screen
+</code></pre></div>
+<p>The screen will clear and you will be presented with a new prompt.</p>
+
+<p><img src="../assets/terminal-screen-1.svg" alt=""></p>
+
+<p>Do something in that shell (e.g.) &quot;ls&quot;.</p>
+
+<h2>Creating new shells in Screen</h2>
+
+<ul>
+<li><p>Press <strong>Ctrl-a</strong>, then press <strong>c</strong></p></li>
+<li><p>You&#39;ll be given another shell (what screen calls a &quot;window&quot;)!</p></li>
+</ul>
+
+<p><img src="../assets/terminal-screen-2.svg" alt=""></p>
+
+<ul>
+<li><p>Create new &quot;windows&quot; with <strong>Ctrl-a, c</strong></p></li>
+<li><p><strong>Ctrl-a, a</strong> switches between this window and your last one.</p></li>
+<li><p>Windows are numbered 0-&gt;N, <strong>Ctrl-a, number</strong> (e.g. <strong>Ctrl-a, 3</strong>) to switch to a particular one.</p></li>
+</ul>
+
+<h2>Detaching from your session</h2>
+
+<ul>
+<li><strong>Ctrl-a, d</strong> detaches from your session.</li>
+</ul>
+
+<p><img src="../assets/terminal-screen-detached.svg" alt=""></p>
+
+<ul>
+<li><strong>screen -r</strong> re-attaches.</li>
+</ul>
+
+<h2>Log out</h2>
+
+<ul>
+<li>You can log out of a machine you have a detached session on and programs will keep running.</li>
+</ul>
+
+<p><img src="../assets/terminal-screen-logged-out.svg" alt=""></p>
+
+<h2>Logging back in</h2>
+
+<ul>
+<li>Then log back in (from anywhere!) and <strong>screen -r</strong> to re-attach.</li>
+</ul>
+
+<p><img src="../assets/terminal-screen-detached.svg" alt=""></p>
+
+<h2>Logging back in</h2>
+
+<ul>
+<li>Then log back in (from anywhere!) and <strong>screen -r</strong> to re-attach.</li>
+</ul>
+
+<p><img src="../assets/terminal-screen-2.svg" alt=""></p>
+
+<p><strong>NOTE:</strong> make sure you log into the same login node that you started screen on</p>
+
+<h2>Other screen commands</h2>
+
+<ul>
+<li><p><strong>screen -d</strong> - forces detach of a screen that&#39;s running (so you can screen -r it).  Handy if your SSH connection drops.</p></li>
+<li><p><strong>screen -ax</strong> - forces attach to a screen that&#39;s attached to from somewhere else.</p></li>
+<li><p>You can configure screen in lots of useful ways, including changing the keyboard shortcuts.</p></li>
+<li><p>For more see man pages, or online documentation: <a href="http://www.gnu.org/software/screen/">(http://www.gnu.org/software/screen/)</a></p></li>
+</ul>
+
+<h1>More useful shell commands</h1>
+
+<h2>Formatted sequences based on numbers</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ seq 1 5
+1
+2
+3
+4 
+5
+</code></pre></div>
+<ul>
+<li><strong>seq</strong> - generates sequences based on numbers</li>
+</ul>
+
+<h2>Formatted sequences based on numbers</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ seq 1 2 9
+1
+3
+5
+7
+9
+</code></pre></div>
+<ul>
+<li><strong>seq</strong> - generates sequences based on numbers</li>
+</ul>
+
+<h2>Formatted sequences based on numbers</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ seq -f %03g 1 2 9
+001
+003
+005
+007
+009
+</code></pre></div>
+<ul>
+<li><strong>g</strong> - the number of significant digits is 3 </li>
+<li><strong>0</strong> - in front of 3 indicates that the number is padded with zeros if smaller than 100.</li>
+<li><strong>%</strong> - start the format definition for the number (place the number)</li>
+</ul>
+
+<h2>Links</h2>
+
+<ul>
+<li><p>Created with &quot;ln&quot;</p></li>
+<li><p>Two types:</p>
+
+<ul>
+<li>&quot;Hard&quot; - indistinguishable from files</li>
+<li>&quot;Soft&quot; (or &quot;Symbolic&quot;) - like a shortcut</li>
+</ul></li>
+</ul>
+
+<h2>Hard links</h2>
+
+<ul>
+<li><p>Inode table keeps track of hard links</p></li>
+<li><p>Deleting a file = &quot;unlinking&quot; it</p></li>
+<li><p>Can only be used inside a single file system</p></li>
+</ul>
+
+<h2>Soft links</h2>
+
+<ul>
+<li>Shortcut, e.g.</li>
+</ul>
+<div class="highlight"><pre><code class="language-" data-lang="">[user@host ~]$ ln -s ~/some_project/2012/part531 ~/current_project
+[user@host ~]$ ls -l ~ 
+lrwxr-xr-x  1 user  staff  11 10 Oct 17:56
+               current_project -&gt; /home/user/some_project_2012/part531
+</code></pre></div>
+<ul>
+<li><p>Can use relative or absolute paths!</p></li>
+<li><p>Create using absolute paths to make sure they go where you want</p></li>
+</ul>
+
+<h2>Generating scripts with scripts</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">cat &lt;&lt;EOF &gt; child_script.sh 
+#!/bin/bash 
+echo The child script says Hi! 
+EOF 
+</code></pre></div>
+<ul>
+<li><strong>&lt;&lt;EOF</strong> - concatenates the text until the string &quot;EOF&quot;, redirecting it to cat</li>
+<li><strong>&gt; child_script.sh</strong> - redirects the output of cat to child_script.sh.</li>
+<li>It may be tempting to indent things - DON&#39;T!</li>
+</ul>
+
+<h2>Exercise:</h2>
+
+<ul>
+<li><p>write a parent<em>script.sh that creates and executes 
+the child</em>script.sh</p></li>
+<li><p>write a parent<em>script.sh that creates and executes 
+10 different child</em>script.sh that print out their individual number</p></li>
+</ul>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Facilities</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/departments/faculties">Faculties and departments</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/library/">Library</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/museums">Museums and Collections</a></li>
+					<li class="footer__item"><a href="http://www.thebloomsbury.com/">UCL Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/maps">Maps and buildings</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+                <h2 class="as-h5">Locations</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/australia">UCL Australia</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/qatar">UCL Qatar</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/global">UCL Global</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-3">
+                <h2 class="as-h5">Connect with us</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/enterprise">Businesses</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/media">Media Relations</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/hr/jobs/">Jobs</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/makeyourmark">Give to UCL</a></li>
+				</ul>
+
+      </article>
+  
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2016-06-23 13:25:06 +0000 UCL</li>
+      <li class="text-muted small"><a href="#">Disclaimer</a>
+      </li>
+      <li class="text-muted small"><a href="#">Freedom of Information</a>
+      </li>
+      <li class="text-muted small"><a href="#">Accessibility</a>
+      </li>
+      <li class="text-muted small"><a href="#">Privacy</a>
+      </li>
+      <li class="text-muted small"><a href="#">Cookies</a>
+      </li>
+      <li class="text-muted small"><a href="#">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/intro-to-shell/js/lib/require.min.js"></script>
+  <script src="/intro-to-shell/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/intro-to-shell/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

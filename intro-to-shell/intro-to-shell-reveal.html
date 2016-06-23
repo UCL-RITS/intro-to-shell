@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Course slides</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="http://lab.hakim.se/reveal-js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="http://lab.hakim.se/reveal-js/css/theme/night.css"/>
+    <link rel="stylesheet" href="/intro-to-shell/css/ucl_reveal.css"/>
+    <link rel="stylesheet" href="/intro-to-shell/site-styles/reveal.css"/>
+  <link rel="stylesheet" media="print" href="http://lab.hakim.se/reveal-js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="http://lab.hakim.se/reveal-js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Course slides</h1>
+    <h3 class="date"></h3>
+</section>
+
+<section><section id="introduction-to-the-unix-shell" class="titleslide slide level1"><h1>Introduction to the UNIX shell</h1></section><section id="overview" class="slide level2">
+<h1>Overview</h1>
+<ul>
+<li><p>Navigating the filesystem</p></li>
+<li><p>File manipulation</p></li>
+<li><p>Wildcards, redirection and piping</p></li>
+<li><p>Variables and loops</p></li>
+<li><p>File properties and permissions</p></li>
+<li><p>Scripts</p></li>
+<li><p>And more...</p></li>
+</ul>
+</section><section id="connecting-to-a-computer-1970s" class="slide level2">
+<h1>Connecting to a computer: 1970s</h1>
+<figure>
+<img src="../assets/terminal-serial.svg" />
+</figure>
+</section><section id="connecting-to-a-computer-over-the-internet" class="slide level2">
+<h1>Connecting to a computer: over the Internet</h1>
+<figure>
+<img src="../assets/terminal-ssh.svg" />
+</figure>
+<p>Communication <em>encrypted!</em></p>
+</section><section id="access-to-legion" class="slide level2">
+<h1>Access to Legion</h1>
+<ul>
+<li><p>To access one of the login nodes (remotely) from a Unix machine:</p>
+<pre><code>ssh &lt;username&gt;@legion.rc.ucl.ac.uk</code></pre></li>
+<li><p>Log on using UCL username/password</p></li>
+<li><p>On Windows (e.g. Desktop@UCL) you can use PuTTY.</p></li>
+</ul>
+</section><section id="access-to-legion-1" class="slide level2">
+<h1>Access to Legion</h1>
+<figure>
+<img src="../assets/puttylocation.png" />
+</figure>
+</section><section id="access-to-legion-2" class="slide level2">
+<h1>Access to Legion</h1>
+<figure>
+<img src="../assets/puttyconfig.png" />
+</figure>
+</section></section>
+<section><section id="navigating-the-filesystem" class="titleslide slide level1"><h1>Navigating the filesystem</h1></section><section id="command-prompt" class="slide level2">
+<h1>Command Prompt</h1>
+<pre><code>[user@host ~]$</code></pre>
+<ul>
+<li><p>On Legion the command prompt has the form <strong>[&lt;username&gt;@&lt;host name&gt; &lt;present directory&gt;]$</strong></p></li>
+<li><p><strong>&lt;user name&gt;</strong> is the Unix user name (your UCL user ID).</p></li>
+<li><p><strong>&lt;host name&gt;</strong> is the name of the computer that you are accessing.</p></li>
+<li><p><strong>&lt;present directory&gt;</strong> is the directory that the user is currently in.</p></li>
+<li><p>Other systems you log into may have a different form of prompt.</p></li>
+</ul>
+</section><section id="command-prompt-1" class="slide level2">
+<h1>Command Prompt</h1>
+<ul>
+<li><p>Read evaluate print loop</p>
+<ul>
+<li><p>User types a command and presses enter</p></li>
+<li><p>The shell <em>reads</em> this command, and <em>evaluates</em> it</p></li>
+<li><p>The shell then <em>prints</em> any output to the screen and returns the command prompt to the user</p></li>
+</ul></li>
+</ul>
+</section><section id="some-files-to-play-with" class="slide level2">
+<h1>Some files to play with</h1>
+<pre><code>[user@host ~]$ git clone https://github.com/tcouch/shell-training.git</code></pre>
+<ul>
+<li>Copy this from the slides and right click in the terminal to paste it in.</li>
+</ul>
+</section><section id="whats-in-here" class="slide level2">
+<h1>What's in here?</h1>
+<pre><code>[user@host ~]$ ls
+Scratch  shell-training</code></pre>
+<ul>
+<li><strong>ls</strong> - lists the contents of the current directory</li>
+</ul>
+</section><section id="whats-over-there" class="slide level2">
+<h1>What's over there?</h1>
+<pre><code>[user@host ~]$ ls shell-training
+animals  data  docs  scripts</code></pre>
+<ul>
+<li>Give ls the name of a directoty as an <em>argument</em> to list the contents of that directory</li>
+</ul>
+</section><section id="hidden-files-and-directories" class="slide level2">
+<h1>Hidden files and directories</h1>
+<pre><code>[user@host ~]$ ls -a
+.              .bash_logout  Scratch
+..             .bashrc       shell-training
+.bash_history  .emacs        .ssh</code></pre>
+<ul>
+<li>Files starting with &quot;.&quot; are hidden</li>
+<li>We have changed the default behaviour of <strong>ls</strong> with a switch, also known as a flag or option</li>
+<li>Always leave a space to separate commands, switches and arguments</li>
+<li>Type <code>man ls</code> for a list of options you can use with ls (q to quit)</li>
+</ul>
+</section><section id="hidden-files-and-directories-1" class="slide level2">
+<h1>Hidden files and directories</h1>
+<pre><code>[user@host ~]$ ls -a
+.       .cshrc      shell-training
+..      .config     .ssh
+.bash_history   .emacs          </code></pre>
+<ul>
+<li><strong>.</strong> - Present working directory (in this case ~)</li>
+<li><strong>..</strong> - Parent directory to the current directory (in this case /home)</li>
+</ul>
+</section><section id="where-am-i" class="slide level2">
+<h1>Where am I?</h1>
+<pre><code>[user@host ~]$ pwd
+/home/username
+[user@host ~]$</code></pre>
+<ul>
+<li><strong>pwd</strong> (print working directory) - returns the full path to your current working directory</li>
+<li><strong>~</strong> 'tilde' is shorthand for your home directory</li>
+<li><strong>/</strong> - the <em>root</em> directory</li>
+<li>Note: Windows uses backslashes '' in paths, everything else uses forward slashes</li>
+</ul>
+</section><section id="filesystem-structure" class="slide level2">
+<h1>Filesystem structure</h1>
+<figure>
+<img src="../assets/directorystructure.png" />
+</figure>
+</section><section id="changing-directory" class="slide level2">
+<h1>Changing directory</h1>
+<pre><code>[user@host ~]$ pwd
+/home/username
+[user@host ~]$ cd shell-training
+[user@host shell-training]$ pwd
+/home/username/shell-training
+[user@host shell-training]$ cd ..
+[user@host ~]$ cd /
+[user@host /]$ </code></pre>
+<ul>
+<li><strong>cd</strong> - Type <em>cd</em> followed by the path to a directory to change into that directory</li>
+<li><strong>..</strong> - The current directory's parent directory</li>
+<li><strong>/</strong> - Everything sits under the &quot;root&quot; directory</li>
+</ul>
+</section><section id="absolute-path" class="slide level2">
+<h1>Absolute path</h1>
+<figure>
+<img src="../assets/abspath.png" />
+</figure>
+<p>/home/alice</p>
+<ul>
+<li>absolute paths always begin with '/'</li>
+</ul>
+</section><section id="relative-path" class="slide level2">
+<h1>Relative path</h1>
+<figure>
+<img src="../assets/relpath.png" />
+</figure>
+<p>../home/alice</p>
+</section><section id="absolute-and-relative-paths" class="slide level2">
+<h1>Absolute and relative paths</h1>
+<p>There are many ways of writing the path to a directory.</p>
+<p>Every directory has a unique absolute path: <code>ls /home/username/shell-training/</code></p>
+<p>Relative paths depend on your current location: <code>ls shell-training/</code></p>
+<p>This relative path begins with the home alias and works from anywhere: <code>ls ~/shell-training/</code></p>
+<p>This path works too:</p>
+<pre><code>cd /bin/../tmp/../home/username/shell-training</code></pre>
+</section><section id="tab-completion" class="slide level2">
+<h1>Tab completion</h1>
+<ul>
+<li>Go to your home directory: <code>cd ~</code></li>
+<li>What happens if you type <code>cd sh</code> and then press the <em>tab</em> key?</li>
+</ul>
+</section><section id="exercises" class="slide level2">
+<h1>Exercises</h1>
+<p>The shell-training folder has the following structure:</p>
+<pre><code>~/shell-training
+|--animals
+|--data
+|--docs
+|--scripts</code></pre>
+<ol type="1">
+<li>What is the absolute path to the docs directory? Use the absolute path to change into this directory</li>
+<li>From there, list the contents of the animals directory using a relative path</li>
+</ol>
+</section><section id="exercises-1" class="slide level2">
+<h1>Exercises</h1>
+<ol start="3" type="1">
+<li>What does typing <code>cd</code> on its own do? Try typing it from several different locations.</li>
+<li>What does typing <code>cd -</code> do? Try typing it from several different locations.</li>
+</ol>
+</section></section>
+<section><section id="creating-files-and-directories" class="titleslide slide level1"><h1>Creating Files and Directories</h1></section><section id="directory-creation" class="slide level2">
+<h1>Directory creation</h1>
+<pre><code>[user@host ~]$ mkdir a_directory
+[user@host ~]$ ls
+a_directory  Scratch  shell-training</code></pre>
+<ul>
+<li>Type <em>mkdir</em> followed by the name of the directory you want to create.</li>
+</ul>
+</section><section id="directory-creation-1" class="slide level2">
+<h1>Directory creation</h1>
+<pre><code>[user@host ~]$ mkdir b_directory c_directory
+[user@host ~]$ ls
+a_directory  b_directory  c_directory  Scratch  shell-training</code></pre>
+<ul>
+<li>You can create two directories at the same time: just separate the names with a space.</li>
+</ul>
+</section><section id="directory-creation-2" class="slide level2">
+<h1>Directory creation</h1>
+<pre><code>[user@host ~]$ mkdir shell-training/a_directory
+[user@host ~]$ ls shell-training
+a_directory  animals  data  docs  scripts</code></pre>
+<ul>
+<li>You can put the path to an existing directory before your new directory name to create a directory in that location.</li>
+</ul>
+</section><section id="nano-a-simple-file-editor" class="slide level2">
+<h1>Nano: A simple file editor</h1>
+<pre><code>[user@host ~]$ nano a_file</code></pre>
+<figure>
+<img src="../assets/nano.png" />
+</figure>
+<ul>
+<li>If the file exists nano will open it, otherwise it will open a blank page</li>
+</ul>
+</section><section id="nano" class="slide level2">
+<h1>Nano</h1>
+<figure>
+<img src="../assets/nano2.png" />
+</figure>
+<ul>
+<li>Commands are along the botton of editor screen</li>
+<li>^ - shorthand for control key</li>
+<li>Type Ctrl-O then Enter to save, Ctrl-X to exit</li>
+</ul>
+</section><section id="other-editors" class="slide level2">
+<h1>Other editors</h1>
+<p>There are many other (better but more complex) text file editors on the system such as <strong>vim</strong>, <strong>emacs</strong> and <strong>nedit</strong>.</p>
+<p>Use the one you feel most comfortable with.</p>
+</section><section id="naming-files-and-directories" class="slide level2">
+<h1>Naming files and directories</h1>
+<ul>
+<li>You can use spaces in file and directory names, but this is generally a bad idea as you will have to use quotes whenever you refer to that file.</li>
+<li>Uppercase and lowercase characters are different: FILENAME does not equal filename</li>
+<li>Avoid special characters such as: $:/,[]{}()!;&quot;'*?&lt;&gt;|</li>
+<li>Filename extensions such as '.txt' or '.pdf' are a convention, not a requirement</li>
+</ul>
+</section><section id="a-simple-script" class="slide level2">
+<h1>A simple script</h1>
+<ul>
+<li>A script is a list of commands, written in a text file, to be run one after another e.g.:</li>
+</ul>
+<pre><code>[user@host ~]$ nano a_script.sh</code></pre>
+<pre><code>echo &quot;Creating new directory...&quot;
+mkdir new_directory
+ls
+echo &quot;Finished&quot;</code></pre>
+</section><section id="running-a-script" class="slide level2">
+<h1>Running a script</h1>
+<ul>
+<li>You can use the source command to run the script like so:</li>
+</ul>
+<pre><code>[user@host ~]$ source a_script.sh
+Creating new directory...
+a_directory   a_script.sh   c_directory     Scratch
+a_file        b_directory   new_directory   shell-training
+Finished</code></pre>
+</section><section id="running-a-script-1" class="slide level2">
+<h1>Running a script</h1>
+<ul>
+<li>What happens if you run this script from another directory?</li>
+</ul>
+<pre><code>[user@host ~]$ cd shell-training
+[user@host shell-training]$ source ../a_script.sh</code></pre>
+</section><section id="running-a-script-2" class="slide level2">
+<h1>Running a script</h1>
+<ul>
+<li>The new directory is created in the current working directory, not the directory where the script file is located.</li>
+</ul>
+<pre><code>[user@host shell-training]$ source ../a_script.sh
+Creating new directory...
+a_directory   animals   data   docs   new_directory   scripts
+Finished</code></pre>
+</section><section id="exercise" class="slide level2">
+<h1>Exercise</h1>
+<p>Write a script that will do the following steps: a. Create a new directory called cake inside your home directory b. Use an absolute path to create a directory inside cake called &quot;Cheesecake&quot; c. Change into the Cheesecake directory d. Use a relative path to create another directory inside cake called &quot;Battenberg&quot; e. Return to the home directory and list the contents of cake</p>
+<p>The final set of directories should look like this:</p>
+<pre><code>~/cake
+|--Cheesecake
+|--Battenberg</code></pre>
+</section><section id="exercise-1" class="slide level2">
+<h1>Exercise</h1>
+<p>Read the man page for mkdir to find out what the -p option does. Use it to create the following set of directories with a single command:</p>
+<pre><code>~/bread
+|--focaccia
+|--naan</code></pre>
+</section></section>
+<section><section id="wildcards" class="titleslide slide level1"><h1>Wildcards</h1></section><section id="wildcards-1" class="slide level2">
+<h1>Wildcards</h1>
+<pre><code>[user@host shell-training]$ cd docs
+[user@host shell-training]$ ls
+123.dat    abc.txt  cake.txt        def.txt   r2d2.bot        xyz.txt
+abcde.txt  ab.txt   cheesecake.txt  food.txt  some-maths.txt
+[user@host docs]$ wc abc.txt def.txt xyz.txt
+  10   52  168 abc.txt
+   7   61  394 def.txt
+  11   99  589 xyz.txt
+  28  212 1151 total</code></pre>
+<ul>
+<li><code>wc</code> counts lines, words and bytes for each file</li>
+<li>We can give wc the names of the files we want to inspect as arguments</li>
+</ul>
+</section><section id="wildcards-2" class="slide level2">
+<h1>Wildcards</h1>
+<pre><code>[user@host docs]$ wc *.txt
+  13  119  683 abcde.txt
+  10   52  168 abc.txt
+   8   83  454 ab.txt
+  26  206 1332 cake.txt
+  11  105  656 cheesecake.txt
+   7   61  394 def.txt
+  13   85  561 food.txt
+   6   12   56 some-maths.txt
+  11   99  589 xyz.txt
+ 105  822 4893 total</code></pre>
+<ul>
+<li><code>*</code> is a wildcard that matches zero or more characters</li>
+<li>Bash automatically expands *.txt into a list of filenames matching that pattern</li>
+</ul>
+</section><section id="wildcards-3" class="slide level2">
+<h1>Wildcards</h1>
+<pre><code>[user@host docs]$ ls a*.txt
+abcde.txt  abc.txt  ab.txt</code></pre>
+<ul>
+<li><code>*</code> is a wildcard that matches zero or more characters.</li>
+</ul>
+</section><section id="wildcards-4" class="slide level2">
+<h1>Wildcards</h1>
+<pre><code>[user@host docs]$ ls ???.txt
+abc.txt def.txt xyz.txt</code></pre>
+<ul>
+<li><code>?</code> is also a wildcard. It matches a single character.</li>
+</ul>
+</section><section id="wildcards-5" class="slide level2">
+<h1>Wildcards</h1>
+<pre><code>[user@host docs]$ ls [fx]*
+food.txt  xyz.txt</code></pre>
+<ul>
+<li>Square brackets will match any one of the characters listed inside them.</li>
+</ul>
+</section></section>
+<section><section id="manipulating-files" class="titleslide slide level1"><h1>Manipulating Files</h1></section><section id="inspecting-files" class="slide level2">
+<h1>Inspecting files</h1>
+<pre><code>[user@host animals]$ less birds.txt</code></pre>
+<ul>
+<li><strong>less</strong> - visualise a text file:
+<ul>
+<li>use arrow keys</li>
+<li>page up/page down</li>
+<li>search by typing &quot;/&quot; and press &quot;n&quot; to step through the results</li>
+<li>quit by typing &quot;q&quot;</li>
+</ul></li>
+</ul>
+</section><section id="searching-files" class="slide level2">
+<h1>Searching files</h1>
+<pre><code>[user@host animals]$ grep bat mammals.txt
+whiskered bat, myotis mystacinus
+natterer&#39;s bat, myotis nattereri
+daubenton&#39;s bat, myotis daubentonii
+leisler&#39;s bat, nyctalus leisleri
+brown long-eared bat, plecotus auritus</code></pre>
+<ul>
+<li><strong>grep</strong> - search for lines in a file containing a certain text string</li>
+</ul>
+</section><section id="other-file-inspection-tools" class="slide level2">
+<h1>Other file inspection tools</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">head</td>
+<td style="text-align: left;">visualise the first 10 lines of a file</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tail</td>
+<td style="text-align: left;">visualise the last 10 lines of a file</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cat</td>
+<td style="text-align: left;">print file contents to the terminal screen</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sdiff</td>
+<td style="text-align: left;">visualise and compare two files side-by-side</td>
+</tr>
+</tbody>
+</table>
+<p>(Use &quot;man &lt;command&gt;&quot; to see more information)</p>
+</section><section id="exercise-2" class="slide level2">
+<h1>Exercise</h1>
+<p>Use grep to search through all of the files in the animal directory to find animals with the word red in their name. Read the man page to find out how to make grep only select the word red, and not just any word containing r-e-d.</p>
+</section><section id="copying-files" class="slide level2">
+<h1>Copying files</h1>
+<pre><code>[user@host ~]$ cp a_file copy_of_a_file
+[user@host ~]$ ls
+a_directory  a_script.sh  bread  cakes.sh     copy_of_a_file  Scratch
+a_file       b_directory  cake   c_directory  new_directory   shell-training</code></pre>
+<ul>
+<li><strong>cp</strong> copy a file or directory</li>
+</ul>
+</section><section id="movingrenaming-files-and-directories" class="slide level2">
+<h1>Moving/Renaming files and directories</h1>
+<pre><code>[user@host ~]$ mv a_file control.in
+[user@host ~]$ ls
+a_directory  b_directory  cake      c_directory  copy_of_a_file  Scratch
+a_script.sh  bread        cakes.sh  control.in   new_directory   shell-training
+[user@host ~]$ mv control.in a_directory
+[user@host ~]$ ls a_directory
+control.in</code></pre>
+<ul>
+<li><strong>mv</strong> - rename or move a file/directory</li>
+<li>It is possible to move and rename a file with one command</li>
+</ul>
+</section><section id="deleting-files-and-directories" class="slide level2">
+<h1>Deleting files and directories</h1>
+<pre><code>[user@host ~]$ rm a_directory/control.in
+[user@host ~]$ rm a_directory
+rm: cannot remove ‘a_directory/’: Is a directory
+[user@host ~]$ rm -r a_directory
+[user@host ~]$ </code></pre>
+<ul>
+<li><strong>rm</strong> - delete a file</li>
+<li><strong>rm -r</strong> - delete a directory and all of its content</li>
+<li><strong>rm operations are irreversible!!!</strong></li>
+<li>The -i argument is highly recommended</li>
+</ul>
+</section><section id="aliases" class="slide level2">
+<h1>Aliases</h1>
+<pre><code>[user@host ~]$ alias zap=&#39;rm -ri&#39;
+[user@host ~]$ zap *_directory</code></pre>
+<ul>
+<li>You can create an alias for common commands to make you life easier</li>
+<li>Type <strong>alias</strong> on its own to see what aliases are already set up</li>
+</ul>
+</section><section id="exercise-3" class="slide level2">
+<h1>Exercise</h1>
+<p>The docs directory contains several files ending in &quot;.txt&quot;. Write a backup script that will create a backups folder and copy each of these files there.</p>
+<ul>
+<li>Run the script</li>
+<li>Delete two of the original text files and use nano to edit another</li>
+<li>Use sdiff to compare the file you've changed with the backed up version</li>
+<li>Read the cp man page to find out how to restore the deleted files from the backup folder without overwriting the changes you have made to the other files</li>
+</ul>
+</section></section>
+<section><section id="redirection" class="titleslide slide level1"><h1>Redirection</h1></section><section id="redirecting-output-to-a-file" class="slide level2">
+<h1>Redirecting output to a file</h1>
+<p>Rather than having the output of a command printed to the screen, we can send it to be written to a file instead.</p>
+<pre><code>[user@host ~]$ echo hello &gt; hello.txt
+[user@host ~]$ echo hello again &gt;&gt; hello.txt
+[user@host ~]$ cat hello.txt
+hello
+hello again</code></pre>
+<ul>
+<li><code>&gt;&gt;</code> appends the output to the end of an existing file.</li>
+<li><code>&gt;</code> will overwrite any existing content.</li>
+</ul>
+</section><section id="file-inspection-revisited" class="slide level2">
+<h1>File inspection revisited</h1>
+<pre><code>[user@host ~]$ cd shell-training/animals
+[user@host animals]$ head -n 5 mammals.txt
+common pipistrelle, pipistrellus pipistrellus
+whiskered bat, myotis mystacinus
+natterer&#39;s bat, myotis nattereri
+daubenton&#39;s bat, myotis daubentonii
+leisler&#39;s bat, nyctalus leisleri</code></pre>
+<ul>
+<li>Use an option <code>-n</code> with head and tail to print n lines from the start or end of a file</li>
+</ul>
+</section><section id="the-middle" class="slide level2">
+<h1>The middle?</h1>
+<p>What about printing a number of lines from the middle of a file? There's no <code>mid</code> command!</p>
+<p>An inefficient solution:</p>
+<ul>
+<li>Use <code>&gt;</code> to redirect what would normally be printed to the screen to a file instead</li>
+<li>Save the output from head to a new file</li>
+<li>Use tail to select some lines from the new file</li>
+</ul>
+</section><section id="the-middle-1" class="slide level2">
+<h1>The middle?</h1>
+<pre><code>[user@host shell-training]$ head -n 15 mammals.txt &gt; temp.txt
+[user@host shell-training]$ tail -n 5 temp.txt
+european hedgehog, erinaceus europaeus
+pygmy shrew, sorex minutus
+wood mouse, apodemus sylvaticus
+house mouse, mus domesticus
+brown rat, rattus norvegicus</code></pre>
+<p>What if you wanted to do this for 1000 files? What if your work flow involves several intermediate steps? That's a lot of temporary files!</p>
+</section><section id="a-better-solution" class="slide level2">
+<h1>A better solution</h1>
+<p>We can use a pipe to redirect the output from one command and make it the input for another command:</p>
+<pre><code>[user@host shell-training]$ head -n 15 mammals.txt | tail -n 5
+european hedgehog, erinaceus europaeus
+pygmy shrew, sorex minutus
+wood mouse, apodemus sylvaticus
+house mouse, mus domesticus
+brown rat, rattus norvegicus</code></pre>
+</section><section id="another-link-in-the-chain" class="slide level2">
+<h1>Another link in the chain</h1>
+<ul>
+<li><strong>sed</strong> can be used to find and replace words in text</li>
+</ul>
+<pre><code>[user@host shell-training]$ head -n 15 mammals.txt | tail -n 5 | sed &#39;s/mouse/elephant/g&#39;
+european hedgehog, erinaceus europaeus
+pygmy shrew, sorex minutus
+wood elephant, apodemus sylvaticus
+house elephant, mus domesticus
+brown rat, rattus norvegicus</code></pre>
+<ul>
+<li>Any number of commands can be connected in this way (memory permitting)</li>
+<li>As long as each command takes text input and produces text output</li>
+<li>Even scripts or programs you write yourself</li>
+</ul>
+</section><section id="another-link-in-the-chain-1" class="slide level2">
+<h1>Another link in the chain</h1>
+<p>You can chain any number of programs together to achieve your goal:</p>
+<figure>
+<img src="../assets/process6.png" />
+</figure>
+<p>This allows you to build up fairly complex workflows within one command-line.</p>
+</section><section id="exercise-4" class="slide level2">
+<h1>Exercise</h1>
+<ol type="1">
+<li><p>Use the wget command to download Alice's Adventures in Wonderland: https://www.gutenberg.org/files/11/11.txt</p></li>
+<li><p>Use less to read the file, search for specific words, and step through the results</p></li>
+<li>Use grep to print lines containing a specific word or phrase to the screen</li>
+</ol>
+<ul>
+<li>e.g. how many times is the Cheshire Cat mentioned?</li>
+</ul>
+<ol start="4" type="1">
+<li><p>Use sed to replace every instance of Alice with your own name, and redirect the result to a new file.</p></li>
+<li><p>Using a combination of head and tail, find lines 325-335</p></li>
+</ol>
+</section><section id="more-about-redirection" class="slide level2">
+<h1>More about redirection</h1>
+<p>There are three streams of communication between a program and its environment:</p>
+<ul>
+<li>Standard Output (stdout): an output stream where a program writes its data - the default destination is generally the terminal screen.</li>
+<li>Standard Error (sterr): another output stream containing error messages - also printed to the terminal screen by default.</li>
+<li>Standard Input (stdin): default source of a program's input - it is generally the command line.</li>
+</ul>
+</section><section id="output-redirection-and-piping" class="slide level2">
+<h1>Output redirection and piping</h1>
+<figure>
+<img src="../assets/process1.png" />
+</figure>
+</section><section id="output-redirection-and-piping-1" class="slide level2">
+<h1>Output redirection and piping</h1>
+<figure>
+<img src="../assets/process2.png" />
+</figure>
+</section><section id="redirecting-stderr" class="slide level2">
+<h1>Redirecting StdErr</h1>
+<pre><code>[user@host docs]$ wc *.txt not_a_file &gt; txt_list 2&gt; txt_list_err</code></pre>
+<ul>
+<li><code>2&gt;</code> redirects any error messages created by a command</li>
+</ul>
+</section><section id="output-redirection-and-piping-2" class="slide level2">
+<h1>Output redirection and piping</h1>
+<p>ls -l</p>
+<figure>
+<img src="../assets/process3.png" />
+</figure>
+</section><section id="output-redirection-and-piping-3" class="slide level2">
+<h1>Output redirection and piping</h1>
+<p>ls -l &gt; list_of_files</p>
+<figure>
+<img src="../assets/process4.png" />
+</figure>
+</section><section id="redirecting-input" class="slide level2">
+<h1>Redirecting input</h1>
+<p>You can also redirect standard input to a command, using <code>&lt;</code> to send the contents of a file in place of command line input.</p>
+<pre><code>[user@host docs]$ bc &lt; some-maths.txt
+3.14285714285714285714
+9.99
+16.66666666666666666666
+10.312567</code></pre>
+<ul>
+<li><strong>bc</strong> allows calculations with floating point numbers.</li>
+</ul>
+</section></section>
+<section><section id="variables-and-loops" class="titleslide slide level1"><h1>Variables and Loops</h1></section><section id="a-simple-variable" class="slide level2">
+<h1>A simple variable</h1>
+<pre><code>[user@host ~]$ var1=&#39;hello&#39;
+[user@host ~]$ echo $var1 world!
+hello world!</code></pre>
+<ul>
+<li>Don't include spaces either side of the '=' sign.</li>
+<li>Variables can be referenced using the '$' sign and their name.</li>
+</ul>
+</section><section id="quoting-variables" class="slide level2">
+<h1>Quoting variables</h1>
+<pre><code>[user@host ~]$ myname=&quot;John Smith&quot;
+[user@host ~]$ echo &quot;Hello my name is $myname. Nice to meet you.&quot;
+Hello my name is John Smith. Nice to meet you.
+[user@host ~]$ echo &#39;Hello my name is $myname. Nice to meet you.&#39;
+Hello my name is $myname. Nice to meet you.</code></pre>
+<ul>
+<li>When using double quotes, bash will scan the contents and expand any variables</li>
+</ul>
+</section><section id="quoting-variables-1" class="slide level2">
+<h1>Quoting variables</h1>
+<pre><code>[user@host ~]$ fruit=orange
+[user@host ~]$ echo &quot;I love eating $fruits.&quot;
+I love eating .</code></pre>
+</section><section id="quoting-variables-2" class="slide level2">
+<h1>Quoting variables</h1>
+<pre><code>[user@host ~]$ echo &quot;I love eating ${fruit}s.&quot;
+I love eating oranges.</code></pre>
+<ul>
+<li>In some cases you will need to surround a variable name with braces.</li>
+</ul>
+</section><section id="arithmetic-with-variables" class="slide level2">
+<h1>Arithmetic with variables</h1>
+<pre><code>[user@host ~]$ two=2 
+[user@host ~]$ result=$(( $two + 2 )) 
+[user@host ~]$ echo $result  
+4 
+[user@host ~]$</code></pre>
+<ul>
+<li>Integer arithmetic can be done inside $(( ))
+<ul>
+<li>+ addition</li>
+<li>- subtraction</li>
+<li>/ integer division</li>
+<li>* multiplication</li>
+</ul></li>
+</ul>
+</section><section id="storing-output-of-commands-in-variables" class="slide level2">
+<h1>Storing output of commands in variables</h1>
+<p>Run commands inside <strong>$( )</strong> and assign the wrapped command to a variable</p>
+</section><section id="arithmetic-with-variables-1" class="slide level2">
+<h1>Arithmetic with variables</h1>
+<pre><code>[user@host ~]$ ls 
+a_directory  a_file 
+[user@host ~]$ dir_contents=$( ls ) 
+[user@host ~]$ echo $dir_contents 
+a_directory a_file</code></pre>
+</section><section id="updated-process-diagram" class="slide level2">
+<h1>Updated process diagram</h1>
+<figure>
+<img src="../assets/processenvvars.png" />
+</figure>
+</section><section id="special-environment-variables" class="slide level2">
+<h1>Special environment variables</h1>
+<p>What is the output of this command?</p>
+<pre><code>[user@host ~]$ echo $PATH</code></pre>
+<p>Note the structure: &lt;path1&gt;:&lt;path2&gt;:&lt;path3&gt;</p>
+<p>PATH is an environment variable which Bash uses to search for commands typed on the command line without a full path.</p>
+<p>Use the command <strong>env</strong> to discover more environment variables.</p>
+</section><section id="the-for-loop" class="slide level2">
+<h1>The for loop</h1>
+<pre><code>[user@host ~]$ for i in first second third
+&gt; do
+&gt; echo $i iteration
+&gt; done
+first iteration
+second iteration
+third iteration</code></pre>
+<ul>
+<li>Defines a loop in which the variable &quot;i&quot; will take the values &quot;first&quot;, &quot;second&quot; and &quot;third&quot; in that order.</li>
+<li><strong>do/done</strong> - start and end the loop iteration definition.</li>
+</ul>
+</section><section id="the-for-loop-using-an-iterator" class="slide level2">
+<h1>The for loop using an iterator</h1>
+<pre><code>[user@host ~]$ for (( i=1 ; i&lt;=5 ; i++ ))
+&gt; do
+&gt; echo iteration$i
+&gt; done
+iteration1
+iteration2
+iteration3
+iteration4
+iteration5</code></pre>
+<p>(Note how it is possible to create number labels)</p>
+</section><section id="exercise-5" class="slide level2">
+<h1>Exercise</h1>
+<ul>
+<li>In the docs directory, create a variable called <em>files</em> listing all of the text files.</li>
+<li>Loop through this list and print out the first line from each file.</li>
+</ul>
+</section><section id="exercise-6" class="slide level2">
+<h1>Exercise</h1>
+<ul>
+<li>Use a for loop to create five directories called calculation_?, where ? is a number.</li>
+<li>Use a loop to create five directories, each one the parent of the next.</li>
+</ul>
+</section></section>
+<section><section id="file-properties-and-permissions" class="titleslide slide level1"><h1>File properties and permissions</h1></section><section id="file-properties" class="slide level2">
+<h1>File properties</h1>
+<pre><code>[user@host ~]$ ls -l
+total 368
+-rw-r--r-- 1 course1 ucaac2 167546 Jan 25  2014 11.txt
+-rw-r--r-- 1 course1 ucaac2     72 Jun  6 12:34 a_script.sh
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:41 cake
+...</code></pre>
+<ul>
+<li><strong>ls -l</strong> - list file properties (details)</li>
+</ul>
+</section><section id="file-properties-1" class="slide level2">
+<h1>File properties</h1>
+<pre><code>drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
+
+        drwxr-xr-x      - File type and permissions
+        4               - Number of links to the file
+        course1         - User name of file owner
+        ucaac2          - Group to which the file belongs 
+        4096            - size of file in bytes
+        Jun 6           - last change date
+        12:43           - last change time
+        bread           - file name</code></pre>
+</section><section id="file-permissions" class="slide level2">
+<h1>File permissions</h1>
+<ul>
+<li><p>There are three user security classifications that apply to the ownership of a file:</p>
+<ul>
+<li><p><strong>user:</strong> the individual user that has ownership of the file</p></li>
+<li><p><strong>group:</strong> a group of users to which that user belongs</p></li>
+<li><p><strong>others:</strong> all other users (not owner or in that group)</p></li>
+</ul></li>
+<li><p>Each of these has three file access classifications:</p>
+<ul>
+<li><p><strong>read:</strong> permission to read the file</p></li>
+<li><p><strong>write:</strong> permission to write the file</p></li>
+<li><p><strong>execute:</strong> permission to execute (run) the file</p></li>
+</ul></li>
+</ul>
+</section><section id="file-permissions-1" class="slide level2">
+<h1>File permissions</h1>
+<p><strong>drwxr-xr-x</strong> has four fields:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">d</td>
+<td style="text-align: left;">The file is a directory</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rwx</td>
+<td style="text-align: left;">The user has read, write and execute access</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">r-x</td>
+<td style="text-align: left;">The group has read and execute access</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">r-x</td>
+<td style="text-align: left;">Others have read and execute access</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Permissions</th>
+<th style="text-align: center;">read</th>
+<th style="text-align: center;">write</th>
+<th style="text-align: center;">execute</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">rwx</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rw-</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">no</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">r--</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">r-x</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">---</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+</tr>
+</tbody>
+</table>
+</section><section id="file-permissions-2" class="slide level2">
+<h1>File permissions</h1>
+<pre><code>[user@host ~]$ ls -l 
+drwxr-xr-x 4 course1 ucaac2   4096 Jun  6 12:43 bread
+[user@host ~]$ chmod go-rx bread
+[user@host ~]$ ls -l 
+drwx------ 2 user rcops 4096 2009-12-08 07:31 a_directory</code></pre>
+<ul>
+<li><strong>chmod</strong> - change the permissions of a file</li>
+</ul>
+</section><section id="file-permissions-3" class="slide level2">
+<h1>File permissions</h1>
+<p>How did the permissions definition go-rx work?</p>
+<pre><code>chmod [ugoa][+/-][rwx] file</code></pre>
+<ul>
+<li><p>ugoa - user, group, other, all</p></li>
+<li><p>+/- - add/remove</p></li>
+<li><p>rwx - read, write, execute</p></li>
+</ul>
+<p>If you don't specify u,g,o or a, default is <strong>ALL</strong> (so chmod +x makes file executable for everyone).</p>
+</section><section id="what-groups-am-i-in" class="slide level2">
+<h1>What groups am I in?</h1>
+<pre><code>[user@host ~]$ groups
+ucaac2 legon020</code></pre>
+</section><section id="exercise-7" class="slide level2">
+<h1>Exercise:</h1>
+<ul>
+<li>Find a partner who is in the same group as you. Use the <strong>groups</strong> command to check.</li>
+<li>In your home directory, create a new directory and give members of your group write access to it, but take away read access.</li>
+<li>Tell your partner the absolute path to the directory you've given them write access to.</li>
+<li>Share files by copying them to each other's shared directories.</li>
+</ul>
+</section><section id="exercise-8" class="slide level2">
+<h1>Exercise</h1>
+<p>The data folder contains 200 files. Each file is named according to a type of measurement (A or B), and a location (1-100) e.g. A_21, B_56 etc. The scripts folder contains a python script which takes the names of an A and a B file as arguments e.g. scripts/calculate_score.py data/A_1 data/B_1 This will calculate a score based on the data in the two files and print it to standard output along with the name of the files used.</p>
+<ol type="1">
+<li><p>Make calculate_score.py executable</p></li>
+<li><p>Use a for loop to run through the data files corresponding to each location and generate a score</p></li>
+<li><p>Modify the for loop to save the scores to a file</p></li>
+<li><p>Use the sort command to find the location with the highest score</p></li>
+</ol>
+</section></section>
+<section><section id="shell-scripting" class="titleslide slide level1"><h1>Shell Scripting</h1></section><section id="shell-scripting-1" class="slide level2">
+<h1>Shell scripting</h1>
+<p>So far we've been using <strong>source</strong> to run our scripts, but it's also possible to make them executable - just like commands.</p>
+</section><section id="step-1-the-interpreter-directive" class="slide level2">
+<h1>Step 1: The Interpreter Directive</h1>
+<pre><code>#!/bin/bash
+# This is a very simple hello world script.
+echo &quot;Hello, world!&quot;</code></pre>
+<ul>
+<li>#! - is used to indicate which program should be used to interpret the script</li>
+<li>In this case it's bash, it could also be a language like python, perl, ruby etc.</li>
+<li>This must be the first line in the script</li>
+<li># - a comment (ignored by /bin/bash)</li>
+</ul>
+</section><section id="step-2-making-it-executable" class="slide level2">
+<h1>Step 2: Making it executable</h1>
+<pre><code>[user@host ~]$ chmod u+x hello_world.sh
+[user@host ~]$ ls -l hello-world.sh
+-rwxr--r-- 1 user ccaas0 30 Mar 31 17:10 hello_world.sh</code></pre>
+<ul>
+<li>Use <strong>chmod</strong> to change permissions on the script and make it executable</li>
+</ul>
+</section><section id="step-3-location" class="slide level2">
+<h1>Step 3: Location</h1>
+<pre><code>[user@host ~]$ ./hello_world.sh
+hello world!</code></pre>
+<ul>
+<li>What's with the &quot;./&quot; ?</li>
+<li>Remember the PATH!</li>
+</ul>
+</section><section id="changing-the-path" class="slide level2">
+<h1>Changing the PATH</h1>
+<p>If you want to be able to make your script work like a command, you need the directory it is in to be in your PATH</p>
+<pre><code>[user@host ~]$ mkdir ~/scripts
+[user@host ~]$ PATH=$PATH:$HOME/scripts
+[user@host ~]$ export PATH</code></pre>
+<ul>
+<li>Create a directory in your home directory specifically for your scripts</li>
+<li>Add this directory to the PATH environmental variable</li>
+<li>Make sure the scripts you want to use are executable</li>
+</ul>
+</section><section id="command-line-arguments" class="slide level2">
+<h1>Command line arguments</h1>
+<p>You can control your script's behaviour with arguments you pass to it when you run it.</p>
+<pre><code>[user@host ~]$ ./script.sh var1 var2</code></pre>
+<p>Within the script: $1 contains &quot;var1&quot; $2 contains &quot;var2&quot;</p>
+</section><section id="command-line-arguments-1" class="slide level2">
+<h1>Command line arguments</h1>
+<p>The script looks like this:</p>
+<pre><code>#!/bin/bash
+
+echo The first argument is $1
+echo The second argument is $2
+echo And together they make ${1}${2}</code></pre>
+<p>And here it is in use:</p>
+<pre><code>[user@host ~]$ ./var-script green house
+The first argument is green
+The second argument is house
+And together they make greenhouse</code></pre>
+</section><section id="exercise-9" class="slide level2">
+<h1>Exercise</h1>
+<p>You can now control the number of times a for loop iterates by including a number as an argument when you call it. Write a script which will create as many numbered directories as you want when you run it.</p>
+</section><section id="exercise-10" class="slide level2">
+<h1>Exercise</h1>
+<ol type="1">
+<li><p>Create a bash script called hi which will use the USER environment variable to say hello to you</p></li>
+<li><p>Make this script executable</p></li>
+<li><p>Create a /scripts directory in your home directory</p></li>
+<li><p>Add this directory to the PATH environment variable</p></li>
+<li><p>Move the new script there and try running it as a command</p></li>
+</ol>
+</section></section>
+<section><section id="login-scripts" class="titleslide slide level1"><h1>Login Scripts</h1></section><section id="variables-are-temporary" class="slide level2">
+<h1>Variables are temporary</h1>
+<ul>
+<li>If you close PuTTY and log back in, you'll find your changes to PATH and any aliases you created have gone.</li>
+<li>You'll need to set them all up again if you want them to work.</li>
+<li>If you put them in a login script, they'll be setup every time you login.</li>
+</ul>
+</section><section id="those-dot-files" class="slide level2">
+<h1>Those dot files</h1>
+<p>Remember those hidden files in your home directory? Some of them are actually pretty useful.</p>
+<ul>
+<li><strong>.bash_profile</strong> is a script that runs every time you log in to the system</li>
+<li><strong>.bashrc</strong> is a script that runs every time you start a new interactive shell</li>
+<li>It's quite common for .bash_profile to include a command to run .bashrc automatically</li>
+</ul>
+<p>Both of these are already set up for you on Legion, but you can improve them as you like.</p>
+</section><section id="exercise-11" class="slide level2">
+<h1>Exercise</h1>
+<ol type="1">
+<li>Edit your .bash_profile script in your home directory and include some commands to be run when you log in. For example:</li>
+</ol>
+<ul>
+<li>alias</li>
+<li>cal</li>
+<li>echo &quot;Welcome back $USER&quot;</li>
+<li>PATH=$PATH:$HOME/scripts &amp;&amp; export PATH</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Close PuTTY and log back in.</p></li>
+<li><p>Now edit .bashrc to report $SHLVL when you start a new instance of bash</p></li>
+</ol>
+</section></section>
+<section><section id="archiving-and-transferring-files" class="titleslide slide level1"><h1>Archiving and transferring files</h1></section><section id="archiving-and-compression" class="slide level2">
+<h1>Archiving and compression</h1>
+<pre><code>[user@host ~]$ tar -czvf work.tgz work
+work/
+work/program/
+work/calculations/
+work/calculations/control.in
+work/workfile</code></pre>
+<ul>
+<li><strong>tar -zcvf</strong> - archives and compresses directory trees and files
+<ul>
+<li><strong>c</strong> - create archive</li>
+<li><strong>z</strong> - compress</li>
+<li><strong>v</strong> - verbose</li>
+<li><strong>f</strong> - in the following file</li>
+</ul></li>
+</ul>
+</section><section id="accessing-another-system" class="slide level2">
+<h1>Accessing another system</h1>
+<p>Use the <strong>ssh</strong> command to login to other systems you have access to</p>
+<pre><code>[user@host ~]$ ssh &lt;username&gt;@aristotle.rc.ucl.ac.uk</code></pre>
+<ul>
+<li>Type Ctrl-D or logout to return to Legion</li>
+</ul>
+</section><section id="transferring-files-across-a-network" class="slide level2">
+<h1>Transferring files across a network</h1>
+<p>To Aristotle:</p>
+<pre><code>[user@host ~]$ scp work.tgz &lt;username&gt;@aristotle.rc.ucl.ac.uk:
+...
+Password:
+work.tgz         100%  213     0.2KB/s   00:00</code></pre>
+<ul>
+<li>remember to put the colon at the end!</li>
+</ul>
+</section><section id="extracting-files-from-a-compressed-archive" class="slide level2">
+<h1>Extracting files from a compressed archive</h1>
+<pre><code>[user@host ~]$ tar -xzvf work.tgz 
+work/
+work/program/
+work/calculations/
+work/calculations/control.in
+work/workfile</code></pre>
+<ul>
+<li><strong>tar -z<em>x</em>vf</strong> - extracts and uncompresses directory trees and files
+<ul>
+<li><strong>x</strong> - extract archive</li>
+<li><strong>z</strong> - uncompress</li>
+<li><strong>v</strong> - verbose</li>
+<li><strong>f</strong> - from the following file</li>
+</ul></li>
+</ul>
+</section><section id="transferring-files-across-a-network-1" class="slide level2">
+<h1>Transferring files across a network</h1>
+<p>From Aristotle:</p>
+<pre><code>[user@host ~]$ scp &lt;username&gt;@aristotle.rc.ucl.ac.uk:~/work.tgz .
+...
+Password:
+work.tgz         100%  340     0.3KB/s   00:00</code></pre>
+<ul>
+<li>. means copy to this directory</li>
+</ul>
+</section><section id="exercise-12" class="slide level2">
+<h1>Exercise</h1>
+<ol type="1">
+<li><p>Use tar to create an archive of the shell-training directory</p></li>
+<li><p>Use scp to copy the archive to Aristotle: aristotle.rc.ucl.ac.uk</p></li>
+<li><p>Extract the archive file on Aristotle</p></li>
+<li><p>Use scp to copy a file from Aristotle to your home directory</p></li>
+</ol>
+</section></section>
+<section><section id="process-control" class="titleslide slide level1"><h1>Process control</h1></section><section id="process-control-1" class="slide level2">
+<h1>Process control</h1>
+<ul>
+<li><p>A process is in the:</p>
+<ul>
+<li><p><strong>foreground</strong> when it is interacting with the user via an interface (usually the shell).</p></li>
+<li><p><strong>background</strong> if it is running without interacting with the user.</p></li>
+<li><p><strong>suspended</strong> if it is neither interacting nor running.</p></li>
+</ul></li>
+<li><p>To run a process in the background: add the symbol &quot;&amp;&quot; at the end of the command line.</p></li>
+<li><p>To send a foreground process to the backgound: press Ctrl+z and then execute the command &quot;bg&quot;</p></li>
+<li><p>To bring a background process to the foreground: execute the command &quot;fg&quot;</p></li>
+</ul>
+</section><section id="which-processes-are-running" class="slide level2">
+<h1>Which processes are running?</h1>
+<p>Use the <strong>jobs</strong> command</p>
+<pre><code>[user@host ~]$ sleep 60 &amp;
+[1] 24991
+[user@host ~]$ jobs
+[1]+  Running                 sleep 60 &amp;</code></pre>
+<p>Or <strong>ps</strong> for more information</p>
+<pre><code>[user@host ~]$ ps
+   PID TTY          TIME CMD
+ 24467 pts/6    00:00:00 bash
+ 24991 pts/6    00:00:00 sleep
+ 24996 pts/6    00:00:00 ps</code></pre>
+</section><section id="killing-processes" class="slide level2">
+<h1>Killing processes</h1>
+<p>Use the <strong>kill</strong> command with the PID:</p>
+<pre><code>[user@host ~]$ kill 24991
+[1]+  Terminated              sleep 60</code></pre>
+<p>Or use the job number:</p>
+<pre><code>[user@host ~]$ kill %1
+[1]+  Terminated              sleep 60</code></pre>
+</section><section id="more-information" class="slide level2">
+<h1>More information</h1>
+<ul>
+<li>Many topics not covered here:
+<ul>
+<li>if statements</li>
+<li>case switches</li>
+<li>defining functions</li>
+<li>and many, many more...</li>
+</ul></li>
+<li>Google and the <strong>man</strong> pages are your friends!</li>
+</ul>
+</section></section>
+<section><section id="gnu-screen" class="titleslide slide level1"><h1>GNU Screen</h1></section><section id="intro-to-gnu-screen" class="slide level2">
+<h1>Intro to GNU Screen</h1>
+<p><strong>Q: What happens if you want to:</strong></p>
+<p>Log out and turn off your PC?</p>
+<p>Go home and continue working?</p>
+<p>Freely create and delete shell sessions within one terminal?</p>
+<p><strong>A: Use a terminal multiplexer like GNU screen</strong></p>
+</section><section id="first-log-into-aristotle" class="slide level2">
+<h1>First, log into Aristotle</h1>
+<pre><code>ssh user@aristotle.rc.ucl.ac.uk</code></pre>
+<p>(or use Putty)</p>
+<figure>
+<img src="../assets/terminal-ssh.svg" />
+</figure>
+<ul>
+<li>Take a note of which login node you are assigned!</li>
+</ul>
+</section><section id="then-run-screen" class="slide level2">
+<h1>Then, run &quot;screen&quot;</h1>
+<pre><code>screen</code></pre>
+<p>The screen will clear and you will be presented with a new prompt.</p>
+<figure>
+<img src="../assets/terminal-screen-1.svg" />
+</figure>
+<p>Do something in that shell (e.g.) &quot;ls&quot;.</p>
+</section><section id="creating-new-shells-in-screen" class="slide level2">
+<h1>Creating new shells in Screen</h1>
+<ul>
+<li><p>Press <strong>Ctrl-a</strong>, then press <strong>c</strong></p></li>
+<li><p>You'll be given another shell (what screen calls a &quot;window&quot;)!</p></li>
+</ul>
+<figure>
+<img src="../assets/terminal-screen-2.svg" />
+</figure>
+<ul>
+<li><p>Create new &quot;windows&quot; with <strong>Ctrl-a, c</strong></p></li>
+<li><p><strong>Ctrl-a, a</strong> switches between this window and your last one.</p></li>
+<li><p>Windows are numbered 0-&gt;N, <strong>Ctrl-a, number</strong> (e.g. <strong>Ctrl-a, 3</strong>) to switch to a particular one.</p></li>
+</ul>
+</section><section id="detaching-from-your-session" class="slide level2">
+<h1>Detaching from your session</h1>
+<ul>
+<li><strong>Ctrl-a, d</strong> detaches from your session.</li>
+</ul>
+<figure>
+<img src="../assets/terminal-screen-detached.svg" />
+</figure>
+<ul>
+<li><strong>screen -r</strong> re-attaches.</li>
+</ul>
+</section><section id="log-out" class="slide level2">
+<h1>Log out</h1>
+<ul>
+<li>You can log out of a machine you have a detached session on and programs will keep running.</li>
+</ul>
+<figure>
+<img src="../assets/terminal-screen-logged-out.svg" />
+</figure>
+</section><section id="logging-back-in" class="slide level2">
+<h1>Logging back in</h1>
+<ul>
+<li>Then log back in (from anywhere!) and <strong>screen -r</strong> to re-attach.</li>
+</ul>
+<figure>
+<img src="../assets/terminal-screen-detached.svg" />
+</figure>
+</section><section id="logging-back-in-1" class="slide level2">
+<h1>Logging back in</h1>
+<ul>
+<li>Then log back in (from anywhere!) and <strong>screen -r</strong> to re-attach.</li>
+</ul>
+<figure>
+<img src="../assets/terminal-screen-2.svg" />
+</figure>
+<p><strong>NOTE:</strong> make sure you log into the same login node that you started screen on</p>
+</section><section id="other-screen-commands" class="slide level2">
+<h1>Other screen commands</h1>
+<ul>
+<li><p><strong>screen -d</strong> - forces detach of a screen that's running (so you can screen -r it). Handy if your SSH connection drops.</p></li>
+<li><p><strong>screen -ax</strong> - forces attach to a screen that's attached to from somewhere else.</p></li>
+<li><p>You can configure screen in lots of useful ways, including changing the keyboard shortcuts.</p></li>
+<li><p>For more see man pages, or online documentation: <a href="http://www.gnu.org/software/screen/">(http://www.gnu.org/software/screen/)</a></p></li>
+</ul>
+</section></section>
+<section><section id="more-useful-shell-commands" class="titleslide slide level1"><h1>More useful shell commands</h1></section><section id="formatted-sequences-based-on-numbers" class="slide level2">
+<h1>Formatted sequences based on numbers</h1>
+<pre><code>[user@host ~]$ seq 1 5
+1
+2
+3
+4 
+5</code></pre>
+<ul>
+<li><strong>seq</strong> - generates sequences based on numbers</li>
+</ul>
+</section><section id="formatted-sequences-based-on-numbers-1" class="slide level2">
+<h1>Formatted sequences based on numbers</h1>
+<pre><code>[user@host ~]$ seq 1 2 9
+1
+3
+5
+7
+9</code></pre>
+<ul>
+<li><strong>seq</strong> - generates sequences based on numbers</li>
+</ul>
+</section><section id="formatted-sequences-based-on-numbers-2" class="slide level2">
+<h1>Formatted sequences based on numbers</h1>
+<pre><code>[user@host ~]$ seq -f %03g 1 2 9
+001
+003
+005
+007
+009</code></pre>
+<ul>
+<li><strong>g</strong> - the number of significant digits is 3</li>
+<li><strong>0</strong> - in front of 3 indicates that the number is padded with zeros if smaller than 100.</li>
+<li><strong>%</strong> - start the format definition for the number (place the number)</li>
+</ul>
+</section><section id="links" class="slide level2">
+<h1>Links</h1>
+<ul>
+<li><p>Created with &quot;ln&quot;</p></li>
+<li>Two types:
+<ul>
+<li>&quot;Hard&quot; - indistinguishable from files</li>
+<li>&quot;Soft&quot; (or &quot;Symbolic&quot;) - like a shortcut</li>
+</ul></li>
+</ul>
+</section><section id="hard-links" class="slide level2">
+<h1>Hard links</h1>
+<ul>
+<li><p>Inode table keeps track of hard links</p></li>
+<li><p>Deleting a file = &quot;unlinking&quot; it</p></li>
+<li><p>Can only be used inside a single file system</p></li>
+</ul>
+</section><section id="soft-links" class="slide level2">
+<h1>Soft links</h1>
+<ul>
+<li>Shortcut, e.g.</li>
+</ul>
+<pre><code>[user@host ~]$ ln -s ~/some_project/2012/part531 ~/current_project
+[user@host ~]$ ls -l ~ 
+lrwxr-xr-x  1 user  staff  11 10 Oct 17:56
+               current_project -&gt; /home/user/some_project_2012/part531</code></pre>
+<ul>
+<li><p>Can use relative or absolute paths!</p></li>
+<li><p>Create using absolute paths to make sure they go where you want</p></li>
+</ul>
+</section><section id="generating-scripts-with-scripts" class="slide level2">
+<h1>Generating scripts with scripts</h1>
+<pre><code>cat &lt;&lt;EOF &gt; child_script.sh 
+#!/bin/bash 
+echo The child script says Hi! 
+EOF </code></pre>
+<ul>
+<li><strong>&lt;&lt;EOF</strong> - concatenates the text until the string &quot;EOF&quot;, redirecting it to cat</li>
+<li><strong>&gt; child_script.sh</strong> - redirects the output of cat to child_script.sh.</li>
+<li>It may be tempting to indent things - DON'T!</li>
+</ul>
+</section><section id="exercise-13" class="slide level2">
+<h1>Exercise:</h1>
+<ul>
+<li><p>write a parent_script.sh that creates and executes the child_script.sh</p></li>
+<li><p>write a parent_script.sh that creates and executes 10 different child_script.sh that print out their individual number</p></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="http://lab.hakim.se/reveal-js/lib/js/head.min.js"></script>
+  <script src="http://lab.hakim.se/reveal-js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: 'night', // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'http://lab.hakim.se/reveal-js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'http://lab.hakim.se/reveal-js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'http://lab.hakim.se/reveal-js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'http://lab.hakim.se/reveal-js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: 'http://lab.hakim.se/reveal-js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+  </body>
+</html>
